@@ -43,7 +43,7 @@
 <body class="index-page">
 
 <!-- Header with fixed sidebar icon -->
-<header id="header" class="header sticky-top" style="padding: 10px 0; background: #fff; position: relative;">
+<header id="header" class="header sticky-top" style="padding: 10px 0; background: #fff;">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
         <!-- Logo on the left -->
@@ -51,15 +51,15 @@
             <img src="logo.jpg" alt="Logo" style="width: 80px; height: auto; max-width: none;">
         </a>
 
-        <!-- Right section: button + sidebar icon -->
-        <div class="d-flex align-items-center" style="gap: 15px; position: relative; z-index: 2000; white-space: nowrap; overflow: visible;">
+        <!-- Right section: sidebar icon + button -->
+        <div class="d-flex align-items-center" style="gap: 15px; position: relative; z-index: 2000;">
+            <!-- Sidebar Icon -->
+            <i class="mobile-nav-toggle bi bi-list" 
+               style="font-size: 1.8rem; cursor: pointer; color: #000; flex-shrink: 0;"></i>
+
             <a class="btn-getstarted" href="index.html#book-a-table" style="flex-shrink: 0;">
                 Place Order
             </a>
-
-            <!-- Sidebar Icon -->
-            <i class="mobile-nav-toggle bi bi-list" 
-               style="font-size: 1.8rem; cursor: pointer; color: #000; position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 2001; flex-shrink: 0; pointer-events: auto;"></i>
         </div>
 
     </div>
@@ -208,19 +208,19 @@
     /* Mobile-specific fixes */
     @media (max-width: 768px) {
         .header {
-            position: fixed; /* Ensure header stays fixed on mobile for consistent icon position */
-            top: 0;
-            width: 100%;
-            z-index: 1020; /* Above sidebar */
+            z-index: 1020; /* Ensure header is above everything */
         }
         .sidebar-backdrop.active {
-            z-index: 1010; /* Ensure backdrop is below header but above content */
+            z-index: 1010; /* Backdrop below header */
         }
         .sidebar {
-            z-index: 1015; /* Above backdrop */
+            z-index: 1015; /* Sidebar above backdrop */
         }
         .mobile-nav-toggle {
-            pointer-events: auto; /* Explicitly ensure touch works */
+            pointer-events: auto; /* Ensure touch works */
+        }
+        .btn-getstarted {
+            pointer-events: auto; /* Ensure button touch works */
         }
     }
 </style>
