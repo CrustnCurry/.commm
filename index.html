@@ -41,6 +41,8 @@
 </head>
 
 <body class="index-page">
+
+<!-- Header with fixed sidebar icon -->
 <header id="header" class="header sticky-top" style="padding: 10px 0; background: #fff;">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
@@ -50,7 +52,7 @@
         </a>
 
         <!-- Right section: button + sidebar icon -->
-        <div class="d-flex align-items-center" style="gap: 15px; position: relative; z-index: 2001;">
+        <div class="d-flex align-items-center" style="gap: 15px; position: relative; z-index: 2000;">
             <a class="btn-getstarted" href="index.html#book-a-table">
                 Place Order
             </a>
@@ -65,6 +67,7 @@
 
 <!-- Sidebar -->
 <div class="sidebar">
+    <!-- Close button inside sidebar -->
     <span class="sidebar-close" style="cursor:pointer; font-size: 1.5rem; font-weight: bold; float: right;">&times;</span>
     <h2>Menu</h2>
     <ul>
@@ -83,33 +86,36 @@
     const sidebar = document.querySelector('.sidebar');
     const sidebarClose = document.querySelector('.sidebar-close');
 
-    // Open/close sidebar
+    // Function to open/close sidebar
     const toggleSidebar = () => {
         sidebar.classList.toggle('active');
-        document.body.classList.toggle('no-scroll');
 
         // Toggle icon
-        mobileNavToggle.classList.toggle('bi-list');
-        mobileNavToggle.classList.toggle('bi-x');
+        if (sidebar.classList.contains('active')) {
+            mobileNavToggle.classList.remove('bi-list');
+            mobileNavToggle.classList.add('bi-x');
+        } else {
+            mobileNavToggle.classList.remove('bi-x');
+            mobileNavToggle.classList.add('bi-list');
+        }
     };
 
     mobileNavToggle.addEventListener('click', toggleSidebar);
 
-    // Close sidebar when clicking close button
+    // Close sidebar when clicking the inside close button
     sidebarClose.addEventListener('click', () => {
         sidebar.classList.remove('active');
-        mobileNavToggle.classList.add('bi-list');
         mobileNavToggle.classList.remove('bi-x');
-        document.body.classList.remove('no-scroll');
+        mobileNavToggle.classList.add('bi-list');
     });
 
-    // Close sidebar when clicking outside
+    // Close sidebar when clicking outside of it
     document.addEventListener('click', (e) => {
         if (!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target)) {
             sidebar.classList.remove('active');
-            mobileNavToggle.classList.add('bi-list');
             mobileNavToggle.classList.remove('bi-x');
-            document.body.classList.remove('no-scroll');
+            mobileNavToggle.classList.add('bi-list');
+       
         }
     });
 </script>
@@ -124,28 +130,21 @@
         left: 0; /* Slide in from the left */
     }
 }
-    /* Prevent body scroll when sidebar is open */
-    body.no-scroll {
-        overflow: hidden;
-    }
-
     /* Sidebar styles */
     .sidebar {
         position: fixed;
         top: 0;
-        left: -100%; /* hide fully offscreen initially */
+        left: -250px; /* hide initially */
         width: 250px;
-        max-width: 80%; /* responsive for smaller screens */
         height: 100%;
         background: #f0f0f0;
         color: #333;
-        border-right: 2px solid #ccc;
+        border: 2px solid #ccc;
         transition: left 0.3s ease;
         padding: 20px;
-        z-index: 2000;
-        box-shadow: 2px 0 12px rgba(0,0,0,0.3);
-        display: flex;
-        flex-direction: column;
+        z-index: 1001;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        pointer-events: auto;
     }
 
     .sidebar.active {
@@ -161,7 +160,6 @@
         list-style: none;
         padding: 0;
         margin: 0;
-        flex-grow: 1;
     }
 
     .sidebar ul li {
@@ -190,16 +188,7 @@
     .sidebar-close:hover {
         color: red;
     }
-
-    /* Mobile adjustments */
-    @media (max-width: 768px) {
-        .btn-getstarted {
-            display: none; /* hide button if needed */
-        }
-    }
 </style>
-
-
 
   <main class="main">
 
@@ -305,7 +294,7 @@
         <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
             <img src="assets/img/about.jpg" class="img-fluid mb-4" alt="Dishes at Crust n Curry">
             <div class="book-a-table">
-                <h3>Order Now</h3>
+                <h3>Reserve Your Table</h3>
                 <p>Call us at: <strong>+44 786 3208938</strong></p>
             </div>
         </div>
