@@ -52,14 +52,12 @@
         </a>
 
         <!-- Right section: button + sidebar icon -->
-        <div class="d-flex align-items-center" style="gap: 15px;">
-
-            <!-- Place Order Button -->
+        <div class="d-flex align-items-center" style="gap: 15px; position: relative; z-index: 2000;">
             <a class="btn-getstarted" href="index.html#book-a-table">
                 Place Order
             </a>
 
-            <!-- Sidebar Icon (fixed position in flex container) -->
+            <!-- Sidebar Icon -->
             <i class="mobile-nav-toggle bi bi-list" 
                style="font-size: 1.8rem; cursor: pointer; color: #000;"></i>
         </div>
@@ -68,8 +66,9 @@
 </header>
 
 <!-- Sidebar -->
-<div class="overlay"></div>
 <div class="sidebar">
+    <!-- Close button inside sidebar -->
+    <span class="sidebar-close" style="cursor:pointer; font-size: 1.5rem; font-weight: bold; float: right;">&times;</span>
     <h2>Menu</h2>
     <ul>
         <li><a href="#hero">Home</a></li>
@@ -83,17 +82,15 @@
 </div>
 
 <script>
-
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const sidebar = document.querySelector('.sidebar');
-    const overlay = document.querySelector('.overlay');
+    const sidebarClose = document.querySelector('.sidebar-close');
 
+    // Function to open/close sidebar
     const toggleSidebar = () => {
-        // Toggle sidebar visibility
         sidebar.classList.toggle('active');
-        overlay.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
 
-        // Toggle icon between list and cross
+        // Toggle icon
         if (sidebar.classList.contains('active')) {
             mobileNavToggle.classList.remove('bi-list');
             mobileNavToggle.classList.add('bi-x');
@@ -105,88 +102,81 @@
 
     mobileNavToggle.addEventListener('click', toggleSidebar);
 
-    overlay.addEventListener('click', () => {
+    // Close sidebar when clicking the inside close button
+    sidebarClose.addEventListener('click', () => {
         sidebar.classList.remove('active');
-        overlay.style.display = 'none';
-        
-        // Reset icon to list
         mobileNavToggle.classList.remove('bi-x');
         mobileNavToggle.classList.add('bi-list');
     });
+
+    // Close sidebar when clicking outside of it
+    document.addEventListener('click', (e) => {
+        if (!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target)) {
+            sidebar.classList.remove('active');
+            mobileNavToggle.classList.remove('bi-x');
+            mobileNavToggle.classList.add('bi-list');
+        }
+    });
 </script>
-
-
 
 <style>
     /* Sidebar styles */
     .sidebar {
         position: fixed;
         top: 0;
-        left: -250px; /* Hide initially */
+        left: -250px; /* hide initially */
         width: 250px;
         height: 100%;
-        background: #f0f0f0; /* Light grey background */
-        color: #333; /* Dark grey text */
-        border: 2px solid #ccc; /* Light grey outline */
+        background: #f0f0f0;
+        color: #333;
+        border: 2px solid #ccc;
         transition: left 0.3s ease;
         padding: 20px;
         z-index: 1001;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Softer glow effect */
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        pointer-events: auto;
     }
 
     .sidebar.active {
-        left: 0; /* Show sidebar when active */
+        left: 0;
     }
 
     .sidebar h2 {
-        margin: 0 0 10px 0; /* Margin for title */
-        font-weight: bold; /* Make title bold */
+        margin: 0 0 10px 0;
+        font-weight: bold;
     }
 
     .sidebar ul {
-        list-style: none; /* Remove list styling */
-        padding: 0; /* Remove padding */
-        margin: 0; /* Remove margin */
+        list-style: none;
+        padding: 0;
+        margin: 0;
     }
 
     .sidebar ul li {
-        background-color: #d9d9d9; /* Light grey for each section */
-        margin: 10px 0; /* Spacing between items */
-        border-radius: 5px; /* Rounded corners */
-        opacity: 0; /* Start hidden */
-        transform: translateY(20px); /* Initial offset for animation */
-        transition: opacity 0.5s ease, transform 0.5s ease; /* Animation effects */
+        background-color: #d9d9d9;
+        margin: 10px 0;
+        border-radius: 5px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
-    .sidebar ul li:nth-child(n) {
-        animation: fadeIn 0.5s forwards; /* Animate sections in */
-        animation-delay: calc(0.3s * var(--n)); /* Delay for each item */
+    .sidebar.active ul li {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .sidebar ul li a {
-        color: #333; /* Dark grey link */
-        font-weight: bold; /* Bold text */
-        text-decoration: none; /* Remove underline */
-        padding: 10px; /* Padding for links */
-        display: block; /* Ensure entire block is clickable */
+        color: #333;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 10px;
+        display: block;
     }
 
-    @keyframes fadeIn {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5); /* Overlay background */
-        display: none;
-        z-index: 1000;
+    /* Sidebar close button */
+    .sidebar-close:hover {
+        color: red;
     }
 </style>
 
