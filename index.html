@@ -74,61 +74,63 @@
   </ul>
 </div>
 <script>
-  const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-  const sidebar = document.querySelector('.sidebar');
-  const sidebarClose = document.querySelector('.sidebar-close');
+  const navToggle = document.querySelector('.mobile-nav-toggle');
+  const sideMenu = document.querySelector('.sidebar');
+  const closeSideMenu = document.querySelector('.sidebar-close');
 
-  // Function to open/close sidebar
-  const toggleSidebar = () => {
-    sidebar.classList.toggle('active');
-    sidebar.setAttribute('aria-hidden', !sidebar.classList.contains('active')); // Accessibility update
+  // Function to toggle the sidebar
+  const toggleSideMenu = () => {
+    const isActive = sideMenu.classList.toggle('active');
+    sideMenu.setAttribute('aria-hidden', !isActive); // Update accessibility attribute
 
-    // Toggle icon
-    mobileNavToggle.classList.toggle('bi-x', sidebar.classList.contains('active'));
-    mobileNavToggle.classList.toggle('bi-list', !sidebar.classList.contains('active'));
+    // Update toggle icon
+    navToggle.classList.toggle('bi-x', isActive);
+    navToggle.classList.toggle('bi-list', !isActive);
   };
 
-  mobileNavToggle.addEventListener('click', toggleSidebar);
+  // Event listener for the toggle button
+  navToggle.addEventListener('click', toggleSideMenu);
 
-  // Close sidebar when clicking the inside close button
-  sidebarClose.addEventListener('click', () => {
-    sidebar.classList.remove('active');
-    sidebar.setAttribute('aria-hidden', 'true');
-    mobileNavToggle.classList.remove('bi-x');
-    mobileNavToggle.classList.add('bi-list');
+  // Close sidebar when clicking the close button
+  closeSideMenu.addEventListener('click', () => {
+    sideMenu.classList.remove('active');
+    sideMenu.setAttribute('aria-hidden', 'true');
+    navToggle.classList.remove('bi-x');
+    navToggle.classList.add('bi-list');
   });
 
   // Close sidebar when clicking outside of it
-  document.addEventListener('click', (e) => {
-    if (!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target) && sidebar.classList.contains('active')) {
-      sidebar.classList.remove('active');
-      sidebar.setAttribute('aria-hidden', 'true');
-      mobileNavToggle.classList.remove('bi-x');
-      mobileNavToggle.classList.add('bi-list');
+  document.addEventListener('click', (event) => {
+    // Check if the sidebar is active and the click is outside the sidebar and the toggle icon
+    if (sideMenu.classList.contains('active') &&
+        !sideMenu.contains(event.target) &&
+        !navToggle.contains(event.target)) {
+      sideMenu.classList.remove('active');
+      sideMenu.setAttribute('aria-hidden', 'true');
+      navToggle.classList.remove('bi-x');
+      navToggle.classList.add('bi-list');
     }
   });
 </script>
-
 <style>
   /* Sidebar styles (Mobile-optimized) */
   .sidebar {
     position: fixed;
     top: 0;
-    left: -250px; /* Hide initially */
-    width: 250px;
+    left: -100vw; /* Hide off-screen */
+    width: 100vw; /* Full width for better usability */
     height: 100%;
     background: #f0f0f0;
     color: #333;
     border: 2px solid #ccc;
     transition: left 0.3s ease;
-    padding: 20px;
     z-index: 1001;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
     pointer-events: auto;
   }
 
   .sidebar.active {
-    left: 0;
+    left: 0; /* Slide into view */
   }
 
   .sidebar h2 {
@@ -160,33 +162,16 @@
     color: #333;
     font-weight: bold;
     text-decoration: none;
-    padding: 10px;
+    padding: 15px; /* Larger touch targets */
     display: block;
+    font-size: 18px; /* Easier reading */
   }
 
   /* Sidebar close button */
   .sidebar-close:hover {
     color: red;
   }
-
-  /* Mobile-specific: Full width on small screens, better touch targets */
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 100vw; /* Full width for better usability */
-      left: -100vw; /* Hide off-screen */
-    }
-
-    .sidebar.active {
-      left: 0;
-    }
-
-    .sidebar ul li a {
-      padding: 15px; /* Larger touch targets */
-      font-size: 18px; /* Easier reading */
-    }
-  }
 </style>
-
   <main class="main">
 
 <!-- Hero Section -->
