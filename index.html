@@ -41,7 +41,6 @@
 </head>
 
 <body class="index-page">
-
 <!-- Header with fixed sidebar icon -->
 <header id="header" class="header sticky-top" style="padding: 10px 0; background: #fff;">
     <div class="container-fluid d-flex align-items-center justify-content-between">
@@ -52,7 +51,7 @@
         </a>
 
         <!-- Right section: sidebar icon + button -->
-        <div class="d-flex align-items-center" style="gap: 15px; position: relative; z-index: 2000;">
+        <div class="d-flex align-items-center" style="gap: 15px; position: relative; z-index: 2000; white-space: nowrap; overflow: visible;">
             <!-- Sidebar Icon -->
             <i class="mobile-nav-toggle bi bi-list" 
                style="font-size: 1.8rem; cursor: pointer; color: #000; flex-shrink: 0;"></i>
@@ -64,9 +63,6 @@
 
     </div>
 </header>
-
-<!-- Sidebar Backdrop -->
-<div class="sidebar-backdrop"></div>
 
 <!-- Sidebar -->
 <div class="sidebar">
@@ -88,12 +84,10 @@
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const sidebar = document.querySelector('.sidebar');
     const sidebarClose = document.querySelector('.sidebar-close');
-    const sidebarBackdrop = document.querySelector('.sidebar-backdrop');
 
     // Function to open/close sidebar
     const toggleSidebar = () => {
         sidebar.classList.toggle('active');
-        sidebarBackdrop.classList.toggle('active');
 
         // Toggle icon
         if (sidebar.classList.contains('active')) {
@@ -110,42 +104,21 @@
     // Close sidebar when clicking the inside close button
     sidebarClose.addEventListener('click', () => {
         sidebar.classList.remove('active');
-        sidebarBackdrop.classList.remove('active');
         mobileNavToggle.classList.remove('bi-x');
         mobileNavToggle.classList.add('bi-list');
     });
 
-    // Close sidebar when clicking the backdrop
-    sidebarBackdrop.addEventListener('click', () => {
-        sidebar.classList.remove('active');
-        sidebarBackdrop.classList.remove('active');
-        mobileNavToggle.classList.remove('bi-x');
-        mobileNavToggle.classList.add('bi-list');
+    // Close sidebar when clicking outside of it
+    document.addEventListener('click', (e) => {
+        if (!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target)) {
+            sidebar.classList.remove('active');
+            mobileNavToggle.classList.remove('bi-x');
+            mobileNavToggle.classList.add('bi-list');
+        }
     });
 </script>
 
 <style>
-    /* Sidebar backdrop */
-    .sidebar-backdrop {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-        pointer-events: none;
-    }
-
-    .sidebar-backdrop.active {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-    }
-
     /* Sidebar styles */
     .sidebar {
         position: fixed;
@@ -208,13 +181,10 @@
     /* Mobile-specific fixes */
     @media (max-width: 768px) {
         .header {
-            z-index: 1020; /* Ensure header is above everything */
-        }
-        .sidebar-backdrop.active {
-            z-index: 1010; /* Backdrop below header */
+            z-index: 1020; /* Ensure header is above sidebar */
         }
         .sidebar {
-            z-index: 1015; /* Sidebar above backdrop */
+            z-index: 1015; /* Sidebar below header */
         }
         .mobile-nav-toggle {
             pointer-events: auto; /* Ensure touch works */
