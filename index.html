@@ -46,7 +46,7 @@
     <div class="container position-relative d-flex align-items-center justify-content-between">
 
         <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-            <img src="assets/img/logo-placeholder.png" alt="Logo Placeholder"> <!-- Placeholder Image -->
+            <img src="assets/img/logo.jpg" alt="Logo Placeholder"> <!-- Placeholder Image -->
             <h1 class="sitename"></h1>
             <span>.</span>
         </a>
@@ -131,14 +131,14 @@
         top: 0;
         left: -250px; /* Hide initially */
         width: 250px;
-        height: 100%; /* Match viewport height */
-        background: white; /* White background */
-        color: darkred; /* Dark red text */
-        border: 2px solid black; /* Black outline */
+        height: 100%;
+        background: #f0f0f0; /* Light grey background */
+        color: #333; /* Dark grey text */
+        border: 2px solid #ccc; /* Light grey outline */
         transition: left 0.3s ease;
         padding: 20px;
         z-index: 1001;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Glow effect */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Softer glow effect */
     }
 
     .sidebar.active {
@@ -147,26 +147,42 @@
 
     .sidebar h2 {
         margin: 0 0 10px 0; /* Margin for title */
+        font-weight: bold; /* Make title bold */
     }
 
     .sidebar ul {
         list-style: none; /* Remove list styling */
         padding: 0; /* Remove padding */
-        background-color: lightgray; /* Light grey background for list */
-        border-radius: 5px; /* Rounded corners for list */
-        padding: 10px; /* Padding around items */
+        margin: 0; /* Remove margin */
     }
 
     .sidebar ul li {
-        margin: 5px 0; /* Spacing between items */
+        background-color: #d9d9d9; /* Light grey for each section */
+        margin: 10px 0; /* Spacing between items */
+        border-radius: 5px; /* Rounded corners */
+        opacity: 0; /* Start hidden */
+        transform: translateY(20px); /* Initial offset for animation */
+        transition: opacity 0.5s ease, transform 0.5s ease; /* Animation effects */
+    }
+
+    .sidebar ul li:nth-child(n) {
+        animation: fadeIn 0.5s forwards; /* Animate sections in */
+        animation-delay: calc(0.3s * var(--n)); /* Delay for each item */
     }
 
     .sidebar ul li a {
-        color: darkred; /* Dark red link */
+        color: #333; /* Dark grey link */
         font-weight: bold; /* Bold text */
         text-decoration: none; /* Remove underline */
-        padding: 5px 10px; /* Padding for links */
+        padding: 10px; /* Padding for links */
         display: block; /* Ensure entire block is clickable */
+    }
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .overlay {
