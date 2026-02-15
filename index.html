@@ -47,28 +47,25 @@
 
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
-        <!-- LOGO -->
+        <!-- LOGO (Left) -->
         <a href="index.html" class="d-flex align-items-center" 
            style="text-decoration: none;">
-
-
             <img src="logo.jpg" alt="Logo"
-                 style="width: 80px; 
-                        height: auto; 
-                        max-width: none;">
+                 style="width: 80px; height: auto; max-width: none;">
         </a>
- <i class="mobile-nav-toggle bi bi-list" 
-       style="font-size: 1.8rem; cursor: pointer; color: #000;"></i>
-       <i class="desktop-nav-toggle d-none bi bi-list" 
-       style="font-size: 1.8rem; cursor: pointer; color: #000;"></i>
 
-        <!-- NAV -->
-     
+        <!-- Right section: button + sidebar icon -->
+        <div class="d-flex align-items-center" style="gap: 15px;">
 
-        <!-- BUTTON -->
-        <a class="btn-getstarted" href="index.html#book-a-table">
-            Place Order
-        </a>
+            <!-- Place Order Button (keep original style) -->
+            <a class="btn-getstarted" href="index.html#book-a-table">
+                Place Order
+            </a>
+
+            <!-- Sidebar Icon (Far right) -->
+            <i class="mobile-nav-toggle bi bi-list" 
+               style="font-size: 1.8rem; cursor: pointer; color: #000;"></i>
+        </div>
 
     </div>
 </header>
@@ -90,24 +87,39 @@
 </div>
 
 <script>
+
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-    const desktopNavToggle = document.querySelector('.desktop-nav-toggle');
     const sidebar = document.querySelector('.sidebar');
     const overlay = document.querySelector('.overlay');
 
     const toggleSidebar = () => {
+        // Toggle sidebar visibility
         sidebar.classList.toggle('active');
         overlay.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
+
+        // Toggle icon between list and cross
+        if (sidebar.classList.contains('active')) {
+            mobileNavToggle.classList.remove('bi-list');
+            mobileNavToggle.classList.add('bi-x');
+        } else {
+            mobileNavToggle.classList.remove('bi-x');
+            mobileNavToggle.classList.add('bi-list');
+        }
     };
 
     mobileNavToggle.addEventListener('click', toggleSidebar);
-    desktopNavToggle.addEventListener('click', toggleSidebar);
 
     overlay.addEventListener('click', () => {
         sidebar.classList.remove('active');
         overlay.style.display = 'none';
+        
+        // Reset icon to list
+        mobileNavToggle.classList.remove('bi-x');
+        mobileNavToggle.classList.add('bi-list');
     });
 </script>
+
+
 
 <style>
     /* Sidebar styles */
@@ -184,8 +196,9 @@
 
   <main class="main">
 
- <!-- Hero Section -->
-<section id="hero" class="hero section light-background" style="padding: 60px 0; text-align: center; overflow: hidden;">
+<!-- Hero Section -->
+<section id="hero" class="hero section light-background" 
+         style="padding: 60px 0; text-align: center; overflow: hidden;">
 
   <div class="container-fluid">
 
@@ -205,13 +218,13 @@
 
         <div class="d-flex justify-content-center justify-content-lg-start gap-3 flex-wrap"
              data-aos="fade-up" data-aos-delay="200">
-          <a href="#book-a-table" class="btn-get-started" style="padding: 12px 25px; font-size: 1rem;">
-            Book a Table
+          <!-- KEEP ORIGINAL BUTTON STYLE -->
+          <a href="#book-a-table" class="btn-get-started">
+            Order Now
           </a>
 
           <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
-             class="glightbox btn-watch-video d-flex align-items-center"
-             style="padding: 12px 25px; font-size: 1rem;">
+             class="glightbox btn-watch-video d-flex align-items-center">
             <i class="bi bi-play-circle"></i>
             <span>Watch Video</span>
           </a>
@@ -222,14 +235,7 @@
       <div class="col-12 col-lg-6 order-1 order-lg-2 hero-img text-center" data-aos="zoom-out">
         <img src="assets/img/main.jpg"
              alt="Main Image"
-             style="
-               width: 180%;          /* roughly twice as big */
-               max-width: 1800px;    /* twice the desktop size */
-               height: auto;
-               display: block;
-               margin: 0 auto;
-               animation: float 6s ease-in-out infinite;
-             ">
+             class="hero-image">
       </div>
 
     </div>
@@ -238,14 +244,42 @@
 
 </section>
 
-<!-- Floating animation for hero image -->
+<!-- Floating animation and responsive image -->
 <style>
+  /* Hero image style */
+  .hero-image {
+    width: 100%;        /* Fully responsive */
+    max-width: 800px;   /* Limit max width on large screens */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Floating animation */
   @keyframes float {
     0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); } /* move up 20px */
+    50% { transform: translateY(-20px); }
     100% { transform: translateY(0px); }
   }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .hero-image {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .hero h1 {
+      font-size: 1.5rem;
+    }
+
+    .hero p {
+      font-size: 1rem;
+    }
+  }
 </style>
+
 
 
 
