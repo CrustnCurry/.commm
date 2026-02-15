@@ -51,18 +51,19 @@
         <a href="index.html" class="d-flex align-items-center" 
            style="text-decoration: none;">
 
+
             <img src="logo.jpg" alt="Logo"
                  style="width: 80px; 
                         height: auto; 
                         max-width: none;">
         </a>
+ <i class="mobile-nav-toggle bi bi-list" 
+       style="font-size: 1.8rem; cursor: pointer; color: #000;"></i>
+       <i class="desktop-nav-toggle d-none bi bi-list" 
+       style="font-size: 1.8rem; cursor: pointer; color: #000;"></i>
 
         <!-- NAV -->
-       <nav id="navmenu" class="navmenu">
-    <a href="index.html" class="logo">Home</a> <!-- Link to home page -->
-    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-    <i class="desktop-nav-toggle d-none d-xl-block bi bi-list"></i>
-</nav>
+     
 
         <!-- BUTTON -->
         <a class="btn-getstarted" href="index.html#book-a-table">
@@ -182,9 +183,9 @@
 </style>
 
   <main class="main">
-<!-- Hero Section -->
-<section id="hero" class="hero section light-background"
-         style="padding: 60px 0; text-align: center;">
+
+ <!-- Hero Section -->
+<section id="hero" class="hero section light-background" style="padding: 60px 0; text-align: center; overflow: hidden;">
 
   <div class="container-fluid">
 
@@ -222,11 +223,12 @@
         <img src="assets/img/main.jpg"
              alt="Main Image"
              style="
-               width: 90%;          /* almost full width on mobile */
-               max-width: 900px;    /* bigger on desktop */
+               width: 180%;          /* roughly twice as big */
+               max-width: 1800px;    /* twice the desktop size */
                height: auto;
                display: block;
                margin: 0 auto;
+               animation: float 6s ease-in-out infinite;
              ">
       </div>
 
@@ -235,8 +237,15 @@
   </div>
 
 </section>
-<!-- /Hero Section -->
 
+<!-- Floating animation for hero image -->
+<style>
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); } /* move up 20px */
+    100% { transform: translateY(0px); }
+  }
+</style>
 
 
 
