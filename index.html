@@ -59,7 +59,7 @@
 
             <!-- Sidebar Icon -->
             <i class="mobile-nav-toggle bi bi-list" 
-               style="font-size: 1.8rem; cursor: pointer; color: #000; position: relative; z-index: 2001;"></i>
+               style="font-size: 1.8rem; cursor: pointer; color: #000; position: relative; z-index: 2001; flex-shrink: 0;"></i>
         </div>
 
     </div>
@@ -203,17 +203,6 @@
     /* Sidebar close button */
     .sidebar-close:hover {
         color: red;
-    }
-
-    /* Mobile adjustments */
-    @media (max-width: 768px) {
-        .sidebar {
-            width: 100%; /* Full width on mobile for overlay effect */
-            left: -100%; /* Hide initially */
-        }
-        .sidebar.active {
-            left: 0; /* Slide in from the left */
-        }
     }
 </style>
   <main class="main">
