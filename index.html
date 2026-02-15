@@ -65,6 +65,9 @@
     </div>
 </header>
 
+<!-- Sidebar Backdrop -->
+<div class="sidebar-backdrop"></div>
+
 <!-- Sidebar -->
 <div class="sidebar">
     <!-- Close button inside sidebar -->
@@ -85,18 +88,21 @@
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const sidebar = document.querySelector('.sidebar');
     const sidebarClose = document.querySelector('.sidebar-close');
+    const sidebarBackdrop = document.querySelector('.sidebar-backdrop');
 
     // Function to open/close sidebar
     const toggleSidebar = () => {
         sidebar.classList.toggle('active');
+        sidebarBackdrop.classList.toggle('active');
 
         // Toggle icon
-        const isActive = sidebar.classList.contains('active');
-        mobileNavToggle.classList.toggle('bi-x', isActive);
-        mobileNavToggle.classList.toggle('bi-list', !isActive);
-
-        // Update ARIA attributes for accessibility
-        mobileNavToggle.setAttribute('aria-expanded', isActive);
+        if (sidebar.classList.contains('active')) {
+            mobileNavToggle.classList.remove('bi-list');
+            mobileNavToggle.classList.add('bi-x');
+        } else {
+            mobileNavToggle.classList.remove('bi-x');
+            mobileNavToggle.classList.add('bi-list');
+        }
     };
 
     mobileNavToggle.addEventListener('click', toggleSidebar);
@@ -104,100 +110,106 @@
     // Close sidebar when clicking the inside close button
     sidebarClose.addEventListener('click', () => {
         sidebar.classList.remove('active');
+        sidebarBackdrop.classList.remove('active');
         mobileNavToggle.classList.remove('bi-x');
         mobileNavToggle.classList.add('bi-list');
-
-        // Update ARIA attributes
-        mobileNavToggle.setAttribute('aria-expanded', 'false');
     });
 
-    // Close sidebar when clicking outside of it
-    document.addEventListener('click', (e) => {
-        if (!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target)) {
-            sidebar.classList.remove('active');
-            mobileNavToggle.classList.remove('bi-x');
-            mobileNavToggle.classList.add('bi-list');
-
-            // Update ARIA attributes
-            mobileNavToggle.setAttribute('aria-expanded', 'false');
-        }
+    // Close sidebar when clicking the backdrop
+    sidebarBackdrop.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        sidebarBackdrop.classList.remove('active');
+        mobileNavToggle.classList.remove('bi-x');
+        mobileNavToggle.classList.add('bi-list');
     });
 </script>
 
 <style>
+    /* Sidebar backdrop */
+    .sidebar-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        pointer-events: none;
+    }
 
-  /* Sidebar styles */
-  .sidebar {
-      position: fixed;
-      top: 0;
-      left: -250px; /* hide initially */
-      width: 250px; /* default width for larger screens */
-      height: 100%;
-      background: #f0f0f0;
-      color: #333;
-      border: 2px solid #ccc;
-      transition: left 0.3s ease;
-      padding: 20px;
-      z-index: 1001;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      pointer-events: auto;
-  }
+    .sidebar-backdrop.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
 
-  .sidebar.active {
-      left: 0;
-  }
+    /* Sidebar styles */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px; /* hide initially */
+        width: 250px;
+        height: 100%;
+        background: #f0f0f0;
+        color: #333;
+        border: 2px solid #ccc;
+        transition: left 0.3s ease;
+        padding: 20px;
+        z-index: 1001;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        pointer-events: auto;
+    }
 
-  /* Mobile specific styles */
-  @media (max-width: 768px) {
-      .sidebar {
-          width: 100%; /* Full width on mobile */
-          left: -100%; /* Hide initially on mobile */
-      }
-      .sidebar.active {
-          left: 0; /* Slide in */
-      }
-  }
+    .sidebar.active {
+        left: 0;
+    }
 
-  .sidebar h2 {
-      margin: 0 0 10px 0;
-      font-weight: bold;
-  }
+    .sidebar h2 {
+        margin: 0 0 10px 0;
+        font-weight: bold;
+    }
 
-  .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-  }
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
 
-  .sidebar ul li {
-      background-color: #d9d9d9;
-      margin: 10px 0;
-      border-radius: 5px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-  }
+    .sidebar ul li {
+        background-color: #d9d9d9;
+        margin: 10px 0;
+        border-radius: 5px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
 
-  .sidebar.active ul li {
-      opacity: 1;
-      transform: translateY(0);
-  }
+    .sidebar.active ul li {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-  .sidebar ul li a {
-      color: #333;
-      font-weight: bold;
-      text-decoration: none;
-      padding: 10px;
-      display: block;
-  }
+    .sidebar ul li a {
+        color: #333;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 10px;
+        display: block;
+    }
 
-  /* Sidebar close button */
-  .sidebar-close:hover {
-      color: red;
-  }
+    /* Sidebar close button */
+    .sidebar-close:hover {
+        color: red;
+    }
+
+    /* Mobile adjustments (optional, but keeping sidebar as 250px drawer) */
+    @media (max-width: 768px) {
+        /* No changes needed; sidebar remains 250px width for a standard drawer effect */
+    }
 </style>
-
-
   <main class="main">
 
 <!-- Hero Section -->
