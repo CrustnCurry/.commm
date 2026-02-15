@@ -115,6 +115,15 @@
 </script>
 
 <style>
+  @media (max-width: 768px) {
+    .sidebar {
+        width: 100%; /* Make the sidebar full width on mobile */
+        left: -100%; /* Hide initially */
+    }
+    .sidebar.active {
+        left: 0; /* Slide in from the left */
+    }
+}
     /* Prevent body scroll when sidebar is open */
     body.no-scroll {
         overflow: hidden;
