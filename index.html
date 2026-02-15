@@ -59,7 +59,7 @@
 
             <!-- Sidebar Icon -->
             <i class="mobile-nav-toggle bi bi-list" 
-               style="font-size: 1.8rem; cursor: pointer; color: #000;"></i>
+               style="font-size: 1.8rem; cursor: pointer; color: #000; position: relative; z-index: 2001;"></i>
         </div>
 
     </div>
@@ -205,9 +205,15 @@
         color: red;
     }
 
-    /* Mobile adjustments (optional, but keeping sidebar as 250px drawer) */
+    /* Mobile adjustments */
     @media (max-width: 768px) {
-        /* No changes needed; sidebar remains 250px width for a standard drawer effect */
+        .sidebar {
+            width: 100%; /* Full width on mobile for overlay effect */
+            left: -100%; /* Hide initially */
+        }
+        .sidebar.active {
+            left: 0; /* Slide in from the left */
+        }
     }
 </style>
   <main class="main">
