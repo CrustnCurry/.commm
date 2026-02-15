@@ -82,103 +82,126 @@
 </div>
 
 <script>
-    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-    const sidebar = document.querySelector('.sidebar');
-    const sidebarClose = document.querySelector('.sidebar-close');
+const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+const sidebar = document.querySelector('.sidebar');
+const sidebarClose = document.querySelector('.sidebar-close');
 
-    // Function to open/close sidebar
-    const toggleSidebar = () => {
-        sidebar.classList.toggle('active');
+// Open/close sidebar
+const openSidebar = () => {
+    sidebar.classList.add('active');
+    mobileNavToggle.classList.remove('bi-list');
+    mobileNavToggle.classList.add('bi-x');
+};
 
-        // Toggle icon
-        if (sidebar.classList.contains('active')) {
-            mobileNavToggle.classList.remove('bi-list');
-            mobileNavToggle.classList.add('bi-x');
-        } else {
-            mobileNavToggle.classList.remove('bi-x');
-            mobileNavToggle.classList.add('bi-list');
-        }
-    };
+const closeSidebar = () => {
+    sidebar.classList.remove('active');
+    mobileNavToggle.classList.remove('bi-x');
+    mobileNavToggle.classList.add('bi-list');
+};
 
-    mobileNavToggle.addEventListener('click', toggleSidebar);
+// Toggle sidebar on icon click
+mobileNavToggle.addEventListener('click', () => {
+    if (sidebar.classList.contains('active')) {
+        closeSidebar();
+    } else {
+        openSidebar();
+    }
+});
 
-    // Close sidebar when clicking the inside close button
-    sidebarClose.addEventListener('click', () => {
-        sidebar.classList.remove('active');
-        mobileNavToggle.classList.remove('bi-x');
-        mobileNavToggle.classList.add('bi-list');
-    });
+// Close sidebar when clicking the inside close button
+sidebarClose.addEventListener('click', closeSidebar);
 
-    // Close sidebar when clicking outside of it
-    document.addEventListener('click', (e) => {
-        if (!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target)) {
-            sidebar.classList.remove('active');
-            mobileNavToggle.classList.remove('bi-x');
-            mobileNavToggle.classList.add('bi-list');
-        }
-    });
+// Close sidebar when clicking outside (mobile-friendly)
+document.addEventListener('touchstart', (e) => {
+    if (!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target)) {
+        closeSidebar();
+    }
+});
+
+// Also support desktop clicks
+document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target)) {
+        closeSidebar();
+    }
+});
 </script>
 
 <style>
-    /* Sidebar styles */
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* hide initially */
+    width: 250px;
+    height: 100%;
+    background: #f0f0f0;
+    color: #333;
+    border: 2px solid #ccc;
+    transition: left 0.3s ease;
+    padding: 20px;
+    z-index: 1500;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    pointer-events: auto;
+}
+
+.sidebar.active {
+    left: 0; /* slide in */
+}
+
+.sidebar h2 {
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    background-color: #d9d9d9;
+    margin: 10px 0;
+    border-radius: 5px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.sidebar.active ul li {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.sidebar ul li a {
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}
+
+/* Sidebar close button */
+.sidebar-close:hover {
+    color: red;
+}
+
+/* Make sure header elements stay above sidebar on small screens */
+.header .mobile-nav-toggle {
+    z-index: 2000;
+}
+
+/* Optional: responsive adjustments */
+@media (max-width: 768px) {
     .sidebar {
-        position: fixed;
-        top: 0;
-        left: -250px; /* hide initially */
-        width: 250px;
-        height: 100%;
-        background: #f0f0f0;
-        color: #333;
-        border: 2px solid #ccc;
-        transition: left 0.3s ease;
-        padding: 20px;
-        z-index: 1001;
-        box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        pointer-events: auto;
+        width: 220px;
     }
-
-    .sidebar.active {
-        left: 0;
-    }
-
-    .sidebar h2 {
-        margin: 0 0 10px 0;
-        font-weight: bold;
-    }
-
-    .sidebar ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .sidebar ul li {
-        background-color: #d9d9d9;
-        margin: 10px 0;
-        border-radius: 5px;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .sidebar.active ul li {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .sidebar ul li a {
-        color: #333;
-        font-weight: bold;
-        text-decoration: none;
-        padding: 10px;
-        display: block;
-    }
-
-    /* Sidebar close button */
-    .sidebar-close:hover {
-        color: red;
-    }
+}
 </style>
+
+<main class="main">
+    <p>Page content here. On mobile, the sidebar now works properly!</p>
+</main>
 
   <main class="main">
 
@@ -284,7 +307,7 @@
         <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
             <img src="assets/img/about.jpg" class="img-fluid mb-4" alt="Dishes at Crust n Curry">
             <div class="book-a-table">
-                <h3>Reserve Your Table</h3>
+                <h3>Order Now</h3>
                 <p>Call us at: <strong>+44 786 3208938</strong></p>
             </div>
         </div>
