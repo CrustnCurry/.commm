@@ -184,32 +184,33 @@
   <main class="main">
 <!-- Hero Section -->
 <section id="hero" class="hero section light-background"
-         style="padding: 60px 0;">
+         style="padding: 60px 0; text-align: center;">
 
-  <div class="container">
+  <div class="container-fluid">
 
-    <div class="row gy-4 justify-content-center align-items-center">
+    <div class="row justify-content-center align-items-center gy-4">
 
       <!-- TEXT -->
-      <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
-        <h1 data-aos="fade-up">
+      <div class="col-12 col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
+        <h1 data-aos="fade-up" style="font-size: 2rem;">
           Savor the Fusion of Flavors – Taste the World on Your Plate
           <br>
           A Feast of Flavors From East to West!
         </h1>
 
-        <p data-aos="fade-up" data-aos-delay="100">
+        <p data-aos="fade-up" data-aos-delay="100" style="font-size: 1.1rem;">
           We are a team of culinary artists blending flavors to create mouthwatering dishes.
         </p>
 
         <div class="d-flex justify-content-center justify-content-lg-start gap-3 flex-wrap"
              data-aos="fade-up" data-aos-delay="200">
-          <a href="#book-a-table" class="btn-get-started">
+          <a href="#book-a-table" class="btn-get-started" style="padding: 12px 25px; font-size: 1rem;">
             Book a Table
           </a>
 
           <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
-             class="glightbox btn-watch-video d-flex align-items-center">
+             class="glightbox btn-watch-video d-flex align-items-center"
+             style="padding: 12px 25px; font-size: 1rem;">
             <i class="bi bi-play-circle"></i>
             <span>Watch Video</span>
           </a>
@@ -217,15 +218,16 @@
       </div>
 
       <!-- IMAGE -->
-      <div class="col-lg-6 order-1 order-lg-2 hero-img text-center"
-           data-aos="zoom-out">
-
+      <div class="col-12 col-lg-6 order-1 order-lg-2 hero-img text-center" data-aos="zoom-out">
         <img src="assets/img/main.jpg"
-             class="img-fluid animated"
              alt="Main Image"
-             style="width: 115%;
-                    max-width: 800px;
-                    height: auto;">
+             style="
+               width: 90%;          /* almost full width on mobile */
+               max-width: 900px;    /* bigger on desktop */
+               height: auto;
+               display: block;
+               margin: 0 auto;
+             ">
       </div>
 
     </div>
@@ -234,6 +236,7 @@
 
 </section>
 <!-- /Hero Section -->
+
 
 
 
