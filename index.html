@@ -109,58 +109,48 @@
         mobileNavToggle.classList.add('bi-list');
     });
 
-   document.addEventListener('click', (e) => {
+  document.addEventListener('click', (e) => {
     if (!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target)) {
-        toggleSidebar();  // Call toggle to close if clicked outside.
+        sidebar.classList.remove('active');
+        mobileNavToggle.classList.remove('bi-x');
+        mobileNavToggle.classList.add('bi-list');
     }
 });
-     
-  
+
+       
+   
 </script>
 
 <style>
-  @media (max-width: 768px) {
-    .sidebar {
-        width: 100%; /* Full width on mobile */
-        left: -100%; /* Hide initially */
-    }
-    .sidebar.active {
-        left: 0; /* Slide in from left */
-        transition: left 0.3s ease; /* Smooth transition */
-    }
-
-    .mobile-nav-toggle {
-        z-index: 2001; /* Ensure the toggle button is above the sidebar */
-    }
-}
+  
 
 .sidebar {
-    pointer-events: none; /* Prevent interaction when inactive */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: #f0f0f0;
+    color: #333;
+    border: 2px solid #ccc;
+    padding: 20px;
+    z-index: 1001;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+        overflow-y: auto;
 }
 
 .sidebar.active {
-    pointer-events: auto; /* Enable interaction when active */
+    transform: translateX(0);
 }
-    /* Sidebar styles */
-    .sidebar {
-        position: fixed;
-        top: 0;
-        left: -250px; /* hide initially */
-        width: 250px;
-        height: 100%;
-        background: #f0f0f0;
-        color: #333;
-        border: 2px solid #ccc;
-        transition: left 0.3s ease;
-        padding: 20px;
-        z-index: 1001;
-        box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        pointer-events: auto;
-    }
 
-    .sidebar.active {
-        left: 0;
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;  /* full width on mobile */
     }
+}
+
 
     .sidebar h2 {
         margin: 0 0 10px 0;
