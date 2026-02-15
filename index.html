@@ -53,7 +53,87 @@
     <div class="d-flex align-items-center" style="gap: 10px; position: relative; z-index: 2000;"> <!-- Reduced gap for mobile -->
       <a class="btn-getstarted" href="index.html#book-a-table" style="font-size: 14px; padding: 8px 12px;">Place Order</a> <!-- Smaller button -->
       <!-- Sidebar Icon -->
-      <i class="mobile-nav-toggle bi bi-list" style="font-size: 1.5rem; cursor: pointer; color: #000;" aria-label="Open Menu"></i> <!-- Added aria for accessibility -->
+      <i class="mobile-nav-toggle bi bi-list" 
+   style="font-size: 1.5rem; cursor: default; color: transparent; pointer-events: none;" 
+   aria-label="Open Menu"></i>
+<!-- Navigation Section -->
+<section id="mobile-nav" style="padding: 15px 10px; text-align: center; background: #fff;">
+  <ul class="mobile-nav-menu">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Items</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</section>
+
+<style>
+/* Menu styling */
+.mobile-nav-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around; /* distribute items in row */
+  flex-wrap: wrap; /* wrap if needed */
+  gap: 10px;
+}
+
+.mobile-nav-menu li {
+  position: relative;
+}
+
+.mobile-nav-menu a {
+  font-family: 'Times New Roman', serif;
+  font-weight: bold;
+  font-size: 16px; /* ideal for mobile */
+  color: #800000; /* maroon/red */
+  text-decoration: none;
+  display: inline-block;
+  padding: 5px 0;
+}
+
+/* Continuous moving underline effect */
+.mobile-nav-menu a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: black;
+  overflow: hidden;
+}
+
+.mobile-nav-menu a::before {
+  content: '';
+  position: absolute;
+  left: -100%;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: black;
+  animation: move-underline 2s linear infinite;
+}
+
+@keyframes move-underline {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: -100%; }
+}
+
+/* Responsive for very small screens */
+@media (max-width: 500px) {
+  .mobile-nav-menu {
+    flex-direction: row;
+    gap: 5px;
+  }
+
+  .mobile-nav-menu a {
+    font-size: 14px;
+  }
+}
+</style>
+
     </div>
   </div>
 </header>
@@ -74,63 +154,61 @@
   </ul>
 </div>
 <script>
-  const navToggle = document.querySelector('.mobile-nav-toggle');
-  const sideMenu = document.querySelector('.sidebar');
-  const closeSideMenu = document.querySelector('.sidebar-close');
+  const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+  const sidebar = document.querySelector('.sidebar');
+  const sidebarClose = document.querySelector('.sidebar-close');
 
-  // Function to toggle the sidebar
-  const toggleSideMenu = () => {
-    const isActive = sideMenu.classList.toggle('active');
-    sideMenu.setAttribute('aria-hidden', !isActive); // Update accessibility attribute
+  // Function to open/close sidebar
+  const toggleSidebar = () => {
+    sidebar.classList.toggle('active');
+    sidebar.setAttribute('aria-hidden', !sidebar.classList.contains('active')); // Accessibility update
 
-    // Update toggle icon
-    navToggle.classList.toggle('bi-x', isActive);
-    navToggle.classList.toggle('bi-list', !isActive);
+    // Toggle icon
+    mobileNavToggle.classList.toggle('bi-x', sidebar.classList.contains('active'));
+    mobileNavToggle.classList.toggle('bi-list', !sidebar.classList.contains('active'));
   };
 
-  // Event listener for the toggle button
-  navToggle.addEventListener('click', toggleSideMenu);
+  mobileNavToggle.addEventListener('click', toggleSidebar);
 
-  // Close sidebar when clicking the close button
-  closeSideMenu.addEventListener('click', () => {
-    sideMenu.classList.remove('active');
-    sideMenu.setAttribute('aria-hidden', 'true');
-    navToggle.classList.remove('bi-x');
-    navToggle.classList.add('bi-list');
+  // Close sidebar when clicking the inside close button
+  sidebarClose.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+    sidebar.setAttribute('aria-hidden', 'true');
+    mobileNavToggle.classList.remove('bi-x');
+    mobileNavToggle.classList.add('bi-list');
   });
 
   // Close sidebar when clicking outside of it
-  document.addEventListener('click', (event) => {
-    // Check if the sidebar is active and the click is outside the sidebar and the toggle icon
-    if (sideMenu.classList.contains('active') &&
-        !sideMenu.contains(event.target) &&
-        !navToggle.contains(event.target)) {
-      sideMenu.classList.remove('active');
-      sideMenu.setAttribute('aria-hidden', 'true');
-      navToggle.classList.remove('bi-x');
-      navToggle.classList.add('bi-list');
+  document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target) && sidebar.classList.contains('active')) {
+      sidebar.classList.remove('active');
+      sidebar.setAttribute('aria-hidden', 'true');
+      mobileNavToggle.classList.remove('bi-x');
+      mobileNavToggle.classList.add('bi-list');
     }
   });
 </script>
+
 <style>
   /* Sidebar styles (Mobile-optimized) */
   .sidebar {
     position: fixed;
     top: 0;
-    left: -100vw; /* Hide off-screen */
-    width: 100vw; /* Full width for better usability */
+    left: -250px; /* Hide initially */
+    width: 250px;
     height: 100%;
     background: #f0f0f0;
     color: #333;
     border: 2px solid #ccc;
     transition: left 0.3s ease;
+    padding: 20px;
     z-index: 1001;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
     pointer-events: auto;
   }
 
   .sidebar.active {
-    left: 0; /* Slide into view */
+    left: 0;
   }
 
   .sidebar h2 {
@@ -162,16 +240,33 @@
     color: #333;
     font-weight: bold;
     text-decoration: none;
-    padding: 15px; /* Larger touch targets */
+    padding: 10px;
     display: block;
-    font-size: 18px; /* Easier reading */
   }
 
   /* Sidebar close button */
   .sidebar-close:hover {
     color: red;
   }
+
+  /* Mobile-specific: Full width on small screens, better touch targets */
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100vw; /* Full width for better usability */
+      left: -100vw; /* Hide off-screen */
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar ul li a {
+      padding: 15px; /* Larger touch targets */
+      font-size: 18px; /* Easier reading */
+    }
+  }
 </style>
+
   <main class="main">
 
 <!-- Hero Section -->
