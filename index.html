@@ -43,7 +43,7 @@
 <body class="index-page">
 
 <!-- Header with fixed sidebar icon -->
-<header id="header" class="header sticky-top" style="padding: 10px 0; background: #fff;">
+<header id="header" class="header sticky-top" style="padding: 10px 0; background: #fff; position: relative;">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
         <!-- Logo on the left -->
@@ -52,14 +52,14 @@
         </a>
 
         <!-- Right section: button + sidebar icon -->
-        <div class="d-flex align-items-center" style="gap: 15px; position: relative; z-index: 2000;">
-            <a class="btn-getstarted" href="index.html#book-a-table">
+        <div class="d-flex align-items-center" style="gap: 15px; position: relative; z-index: 2000; white-space: nowrap; overflow: visible;">
+            <a class="btn-getstarted" href="index.html#book-a-table" style="flex-shrink: 0;">
                 Place Order
             </a>
 
             <!-- Sidebar Icon -->
             <i class="mobile-nav-toggle bi bi-list" 
-               style="font-size: 1.8rem; cursor: pointer; color: #000; position: relative; z-index: 2001; flex-shrink: 0;"></i>
+               style="font-size: 1.8rem; cursor: pointer; color: #000; position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 2001; flex-shrink: 0; pointer-events: auto;"></i>
         </div>
 
     </div>
@@ -203,6 +203,25 @@
     /* Sidebar close button */
     .sidebar-close:hover {
         color: red;
+    }
+
+    /* Mobile-specific fixes */
+    @media (max-width: 768px) {
+        .header {
+            position: fixed; /* Ensure header stays fixed on mobile for consistent icon position */
+            top: 0;
+            width: 100%;
+            z-index: 1020; /* Above sidebar */
+        }
+        .sidebar-backdrop.active {
+            z-index: 1010; /* Ensure backdrop is below header but above content */
+        }
+        .sidebar {
+            z-index: 1015; /* Above backdrop */
+        }
+        .mobile-nav-toggle {
+            pointer-events: auto; /* Explicitly ensure touch works */
+        }
     }
 </style>
   <main class="main">
