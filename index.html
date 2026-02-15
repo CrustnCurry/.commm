@@ -109,26 +109,37 @@
         mobileNavToggle.classList.add('bi-list');
     });
 
-    // Close sidebar when clicking outside of it
-    document.addEventListener('click', (e) => {
-        if (!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target)) {
-            sidebar.classList.remove('active');
-            mobileNavToggle.classList.remove('bi-x');
-            mobileNavToggle.classList.add('bi-list');
-       
-        }
-    });
+   document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target)) {
+        toggleSidebar();  // Call toggle to close if clicked outside.
+    }
+});
+     
+  
 </script>
 
 <style>
   @media (max-width: 768px) {
     .sidebar {
-        width: 100%; /* Make the sidebar full width on mobile */
+        width: 100%; /* Full width on mobile */
         left: -100%; /* Hide initially */
     }
     .sidebar.active {
-        left: 0; /* Slide in from the left */
+        left: 0; /* Slide in from left */
+        transition: left 0.3s ease; /* Smooth transition */
     }
+
+    .mobile-nav-toggle {
+        z-index: 2001; /* Ensure the toggle button is above the sidebar */
+    }
+}
+
+.sidebar {
+    pointer-events: none; /* Prevent interaction when inactive */
+}
+
+.sidebar.active {
+    pointer-events: auto; /* Enable interaction when active */
 }
     /* Sidebar styles */
     .sidebar {
