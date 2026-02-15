@@ -43,7 +43,7 @@
 <body class="index-page">
 
 <!-- Header with fixed sidebar icon -->
-<header id="header" class="header sticky-top" style="padding: 10px 0; background: #fff;">
+<header id="header" class="header sticky-top" style="padding: 15px 0; background: #fff;">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
         <!-- Logo on the left -->
@@ -66,8 +66,8 @@
 </header>
 
 <!-- Sidebar -->
+<div class="overlay"></div>
 <div class="sidebar">
-    <!-- Close button inside sidebar -->
     <span class="sidebar-close" style="cursor:pointer; font-size: 1.5rem; font-weight: bold; float: right;">&times;</span>
     <h2>Menu</h2>
     <ul>
@@ -84,43 +84,37 @@
 <script>
 const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
 const sidebar = document.querySelector('.sidebar');
+const overlay = document.querySelector('.overlay');
 const sidebarClose = document.querySelector('.sidebar-close');
 
-// Open/close sidebar
 const openSidebar = () => {
     sidebar.classList.add('active');
+    overlay.style.display = 'block';
     mobileNavToggle.classList.remove('bi-list');
     mobileNavToggle.classList.add('bi-x');
 };
 
 const closeSidebar = () => {
     sidebar.classList.remove('active');
+    overlay.style.display = 'none';
     mobileNavToggle.classList.remove('bi-x');
     mobileNavToggle.classList.add('bi-list');
 };
 
-// Toggle sidebar on icon click
+// Toggle sidebar
 mobileNavToggle.addEventListener('click', () => {
-    if (sidebar.classList.contains('active')) {
-        closeSidebar();
-    } else {
-        openSidebar();
-    }
+    sidebar.classList.contains('active') ? closeSidebar() : openSidebar();
 });
 
-// Close sidebar when clicking the inside close button
+// Close inside button
 sidebarClose.addEventListener('click', closeSidebar);
 
-// Close sidebar when clicking outside (mobile-friendly)
-document.addEventListener('touchstart', (e) => {
-    if (!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target)) {
-        closeSidebar();
-    }
-});
+// Close clicking outside overlay (mobile-friendly)
+overlay.addEventListener('click', closeSidebar);
 
-// Also support desktop clicks
-document.addEventListener('click', (e) => {
-    if (!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target)) {
+// Support touch events
+document.addEventListener('touchstart', (e) => {
+    if(!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target)) {
         closeSidebar();
     }
 });
@@ -131,7 +125,7 @@ document.addEventListener('click', (e) => {
 .sidebar {
     position: fixed;
     top: 0;
-    left: -250px; /* hide initially */
+    left: -250px; /* Hide initially */
     width: 250px;
     height: 100%;
     background: #f0f0f0;
@@ -139,13 +133,12 @@ document.addEventListener('click', (e) => {
     border: 2px solid #ccc;
     transition: left 0.3s ease;
     padding: 20px;
-    z-index: 1500;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    pointer-events: auto;
+    z-index: 1001;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .sidebar.active {
-    left: 0; /* slide in */
+    left: 0;
 }
 
 .sidebar h2 {
@@ -181,21 +174,19 @@ document.addEventListener('click', (e) => {
     display: block;
 }
 
-/* Sidebar close button */
 .sidebar-close:hover {
     color: red;
 }
 
-/* Make sure header elements stay above sidebar on small screens */
-.header .mobile-nav-toggle {
-    z-index: 2000;
-}
-
-/* Optional: responsive adjustments */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 220px;
-    }
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    z-index: 1000;
 }
 </style>
 
