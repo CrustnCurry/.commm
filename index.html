@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - Yummy Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Yummy
+  * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+<header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+
+        <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+            <img src="assets/img/logo-placeholder.png" alt="Logo Placeholder"> <!-- Placeholder Image -->
+            <h1 class="sitename"></h1>
+            <span>.</span>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+            <ul>
+                <li><a href="#hero" class="active">Home<br></a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#chefs">Chefs</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li class="dropdown">
+                    <a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li><a href="#">Dropdown 1</a></li>
+                        <li class="dropdown">
+                            <a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a href="#">Deep Dropdown 1</a></li>
+                                <li><a href="#">Deep Dropdown 2</a></li>
+                                <li><a href="#">Deep Dropdown 3</a></li>
+                                <li><a href="#">Deep Dropdown 4</a></li>
+                                <li><a href="#">Deep Dropdown 5</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Dropdown 2</a></li>
+                        <li><a href="#">Dropdown 3</a></li>
+                        <li><a href="#">Dropdown 4</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            <i class="desktop-nav-toggle d-none d-xl-block bi bi-list"></i> <!-- Desktop Toggle -->
+        </nav>
+
+        <a class="btn-getstarted" href="index.html#book-a-table">Place Order</a>
+
+    </div>
+</header>
+
+<!-- Sidebar -->
+<div class="overlay"></div>
+<div class="sidebar">
+    <h2>Menu</h2>
+    <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#chefs">Chefs</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</div>
+
+<script>
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const desktopNavToggle = document.querySelector('.desktop-nav-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.overlay');
+
+    const toggleSidebar = () => {
+        sidebar.classList.toggle('active');
+        overlay.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
+    };
+
+    mobileNavToggle.addEventListener('click', toggleSidebar);
+    desktopNavToggle.addEventListener('click', toggleSidebar);
+
+    overlay.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        overlay.style.display = 'none';
+    });
+</script>
+
+<style>
+    /* Sidebar styles */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px; /* Hide initially */
+        width: 250px;
+        height: 100%; /* Match viewport height */
+        background: white; /* White background */
+        color: darkred; /* Dark red text */
+        border: 2px solid black; /* Black outline */
+        transition: left 0.3s ease;
+        padding: 20px;
+        z-index: 1001;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Glow effect */
+    }
+
+    .sidebar.active {
+        left: 0; /* Show sidebar when active */
+    }
+
+    .sidebar h2 {
+        margin: 0 0 10px 0; /* Margin for title */
+    }
+
+    .sidebar ul {
+        list-style: none; /* Remove list styling */
+        padding: 0; /* Remove padding */
+        background-color: lightgray; /* Light grey background for list */
+        border-radius: 5px; /* Rounded corners for list */
+        padding: 10px; /* Padding around items */
+    }
+
+    .sidebar ul li {
+        margin: 5px 0; /* Spacing between items */
+    }
+
+    .sidebar ul li a {
+        color: darkred; /* Dark red link */
+        font-weight: bold; /* Bold text */
+        text-decoration: none; /* Remove underline */
+        padding: 5px 10px; /* Padding for links */
+        display: block; /* Ensure entire block is clickable */
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Overlay background */
+        display: none;
+        z-index: 1000;
+    }
+</style>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section light-background">
+
+      <div class="container">
+        <div class="row gy-4 justify-content-center justify-content-lg-between">
+          <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center">
+            <h1 data-aos="fade-up">Savor the Fusion of Flavors-taste the World on Your Plate  <br>A Feast of Flavors From East to West!</h1>
+           <p data-aos="fade-up" data-aos-delay="100">We are a team of culinary artists blending flavors to create mouthwatering dishes.</p>
+            <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+              <a href="#book-a-table" class="btn-get-started">Booka a Table</a>
+              <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+            </div>
+          </div>
+          <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+            <img src="assets/img/main.jpg" class="img-fluid animated" alt="">
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+     <!-- Section Title -->
+<div class="container section-title" data-aos="fade-up">
+    <h2>About Crust n Curry<br></h2>
+    <p><span>Discover Our Story</span> <span class="description-title">and Culinary Passion</span></p>
+</div><!-- End Section Title -->
+
+<div class="container">
+
+    <div class="row gy-4">
+        <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
+            <img src="assets/img/about.jpg" class="img-fluid mb-4" alt="Dishes at Crust n Curry">
+            <div class="book-a-table">
+                <h3>Reserve Your Table</h3>
+                <p>Call us at: <strong>+44 786 3208938</strong></p>
+            </div>
+        </div>
+        <div class="col-lg-5" data-aos="fade-up" data-aos-delay="250">
+            <div class="content ps-0 ps-lg-5">
+                <p class="fst-italic">
+                    At Crust n Curry, we believe that every meal should be a memorable experience. Our passionate chefs use only the freshest ingredients to craft dishes that tantalize your taste buds.
+                </p>
+                <ul>
+                    <li><i class="bi bi-check-circle-fill"></i> <span>Innovative menu blending traditional and modern culinary techniques.</span></li>
+                    <li><i class="bi bi-check-circle-fill"></i> <span>Warm and inviting atmosphere perfect for family gatherings and celebrations.</span></li>
+                    <li><i class="bi bi-check-circle-fill"></i> <span>Exceptional service that makes every visit special.</span></li>
+                </ul>
+                <p>
+                    Our commitment to quality extends beyond our food; it's embedded in our customer service and ambiance. Join us at Crust n Curry where we make every dining moment extraordinary. Whether you’re here for a casual meal or a special occasion, we promise an experience that delights all the senses.
+                </p>
+
+                <div class="position-relative mt-4">
+                    <img src="assets/img/about-2.jpg" class="img-fluid" alt="Dining Experience at Crust n Curry">
+                    <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- End About Section -->
+
+    <!-- Why Us Section -->
+<section id="why-us" class="why-us section light-background">
+
+    <div class="container">
+
+        <div class="row gy-4">
+
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="why-box">
+                    <h3>Why Choose Crust n Curry?</h3>
+                    <p>
+                        At Crust n Curry, we don’t just serve food; we serve unforgettable experiences. Our menu is a celebration of flavors, combining traditional recipes with a modern twist, ensuring each dish is a delight for the senses.
+                    </p>
+                    <div class="text-center">
+                        <a href="#" class="more-btn"><span>Discover More</span> <i class="bi bi-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div><!-- End Why Box -->
+
+            <div class="col-lg-8 d-flex align-items-stretch">
+                <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+
+                    <div class="col-xl-4">
+                        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                            <i class="bi bi-fire"></i>
+                            <h4>Freshly Prepared Ingredients</h4>
+                            <p>We source the finest ingredients to ensure every dish bursts with flavor and quality.</p>
+                        </div>
+                    </div><!-- End Icon Box -->
+
+                    <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                            <i class="bi bi-globe"></i>
+                            <h4>Global Culinary Inspirations</h4>
+                            <p>Our diverse menu reflects culinary traditions from around the world, creating unique taste experiences.</p>
+                        </div>
+                    </div><!-- End Icon Box -->
+
+                    <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
+                        <div class="icon-box d-flex flex-column justify-content-center align-items-center">
+                            <i class="bi bi-person-check"></i>
+                            <h4>Exceptional Service</h4>
+                            <p>Our friendly and attentive staff are dedicated to making your dining experience memorable.</p>
+                        </div>
+                    </div><!-- End Icon Box -->
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section><!-- End Why Us Section -->
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats section dark-background">
+
+      <img src="assets/img/stats.jpg" alt="" data-aos="fade-in">
+
+      <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="880" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Clients</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="1000" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Projects</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="24/7" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Hours Of Support</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item text-center w-100 h-100">
+              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Workers</p>
+            </div>
+          </div><!-- End Stats Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Stats Section -->
+
+   <!-- Menu Section -->
+<section id="menu" class="menu section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Our Menu</h2>
+        <p><span>Explore Our</span> <span class="description-title">Culinary Delights</span></p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <ul class="nav nav-tabs d-flex justify-content-start" data-aos="fade-up" data-aos-delay="100" style="overflow-x: auto; white-space: nowrap;">
+
+            <li class="nav-item" style="display: inline-block; margin-right: 10px;">
+                <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-pizza">
+                    <h4>Pizza</h4>
+                </a>
+            </li>
+            <li class="nav-item" style="display: inline-block; margin-right: 10px;">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-parmeson">
+                    <h4>Parmeson</h4>
+                </a>
+            </li>
+            <li class="nav-item" style="display: inline-block; margin-right: 10px;">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-burgers">
+                    <h4>Burgers</h4>
+                </a>
+            </li>
+            <li class="nav-item" style="display: inline-block; margin-right: 10px;">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-chips">
+                    <h4>Chips</h4>
+                </a>
+            </li>
+            <li class="nav-item" style="display: inline-block; margin-right: 10px;">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-donnar">
+                    <h4>Donnar Kebab</h4>
+                </a>
+            </li>
+            <li class="nav-item" style="display: inline-block; margin-right: 10px;">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-wraps">
+                    <h4>Wraps</h4>
+                </a>
+            </li>
+            <li class="nav-item" style="display: inline-block; margin-right: 10px;">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-curries">
+                    <h4>Curries</h4>
+                </a>
+            </li>
+            <li class="nav-item" style="display: inline-block; margin-right: 10px;">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-roti">
+                    <h4>Roti</h4>
+                </a>
+            </li>
+            <li class="nav-item" style="display: inline-block; margin-right: 10px;">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-naan">
+                    <h4>Naan</h4>
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+
+            <!-- PIZZA TAB -->
+            <div class="tab-pane fade active show" id="menu-pizza">
+                <div class="tab-header text-center">
+                    <p>From Our Oven</p>
+                    <h3>Artisan Pizzas</h3>
+                </div>
+                <div class="scrollable">
+                    <div class="row gy-5">
+                        <div class="col-lg-4 menu-item">
+                            <a href="[IMAGE_URL_PIZZA_1]" class="glightbox"><img src="[IMAGE_URL_PIZZA_1]" class="menu-img img-fluid" alt="Signature Pizza"></a>
+                            <h4>Classic Margherita</h4>
+                            <p class="ingredients">Fresh mozzarella, basil, and rich tomato sauce on our signature crust.</p>
+                            <p class="price">$15.00</p>
+                        </div>
+                        <div class="col-lg-4 menu-item">
+                            <a href="[IMAGE_URL_PIZZA_2]" class="glightbox"><img src="[IMAGE_URL_PIZZA_2]" class="menu-img img-fluid" alt="Spicy Pizza"></a>
+                            <h4>Spicy Fusion Pizza</h4>
+                            <p class="ingredients">Topped with spicy meats, peppers, and a drizzle of chili oil.</p>
+                            <p class="price">$17.50</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PARMESON TAB -->
+            <div class="tab-pane fade" id="menu-parmeson">
+                <div class="tab-header text-center">
+                    <p>CrustnCurry Specialties</p>
+                    <h3>Parmeson Delights</h3>
+                </div>
+                <div class="scrollable">
+                    <div class="row gy-5">
+                        <div class="col-lg-4 menu-item">
+                            <a href="[IMAGE_URL_PARMESON_1]" class="glightbox"><img src="[IMAGE_URL_PARMESON_1]" class="menu-img img-fluid" alt="Parmeson Dish"></a>
+                            <h4>Golden Parmeson</h4>
+                            <p class="ingredients">Tender protein baked under a perfectly golden, savory parmesan crust.</p>
+                            <p class="price">$13.95</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BURGERS TAB -->
+            <div class="tab-pane fade" id="menu-burgers">
+                <div class="tab-header text-center">
+                    <p>Handheld Favourites</p>
+                    <h3>Burgers</h3>
+                </div>
+                <div class="scrollable">
+                    <div class="row gy-5">
+                        <div class="col-lg-4 menu-item">
+                            <a href="[IMAGE_URL_BURGER_1]" class="glightbox"><img src="[IMAGE_URL_BURGER_1]" class="menu-img img-fluid" alt="Gourmet Burger"></a>
+                            <h4>The Ultimate Burger</h4>
+                            <p class="ingredients">Flame-grilled patty, sharp cheese, fresh toppings, and our signature sauce.</p>
+                            <p class="price">$11.50</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHIPS TAB -->
+            <div class="tab-pane fade" id="menu-chips">
+                <div class="tab-header text-center">
+                    <p>Crispy Delights</p>
+                    <h3>Chips</h3>
+                </div>
+                <div class="scrollable">
+                    <div class="row gy-5">
+                        <div class="col-lg-4 menu-item">
+                            <a href="[IMAGE_URL_CHIPS_1]" class="glightbox"><img src="[IMAGE_URL_CHIPS_1]" class="menu-img img-fluid" alt="Golden Chips"></a>
+                            <h4>Crispy Golden Chips</h4>
+                            <p class="ingredients">Perfectly fried, seasoned, and irresistibly crispy.</p>
+                            <p class="price">$3.50</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DONNAR KEBAB TAB -->
+            <div class="tab-pane fade" id="menu-donnar">
+                <div class="tab-header text-center">
+                    <p>Street Food Classics</p>
+                    <h3>Donnar Kebab</h3>
+                </div>
+                <div class="scrollable">
+                    <div class="row gy-5">
+                        <div class="col-lg-4 menu-item">
+                            <a href="[IMAGE_URL_DONNAR_1]" class="glightbox"><img src="[IMAGE_URL_DONNAR_1]" class="menu-img img-fluid" alt="Donnar Kebab"></a>
+                            <h4>Authentic Donnar Kebab</h4>
+                            <p class="ingredients">Spiced, slow-roasted meat served with fresh salad and creamy sauce.</p>
+                            <p class="price">$10.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WRAPS TAB -->
+            <div class="tab-pane fade" id="menu-wraps">
+                <div class="tab-header text-center">
+                    <p>Handheld Favourites</p>
+                    <h3>Wraps</h3>
+                </div>
+                <div class="scrollable">
+                    <div class="row gy-5">
+                        <div class="col-lg-4 menu-item">
+                            <a href="[IMAGE_URL_WRAP_1]" class="glightbox"><img src="[IMAGE_URL_WRAP_1]" class="menu-img img-fluid" alt="Chicken Wrap"></a>
+                            <h4>Spicy Chicken Wrap</h4>
+                            <p class="ingredients">Grilled chicken, crisp vegetables, and zesty dressing wrapped tight.</p>
+                            <p class="price">$8.50</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INDIAN AND PAKISTANI CURRIES TAB -->
+            <div class="tab-pane fade" id="menu-curries">
+                <div class="tab-header text-center">
+                    <p>Taste of South Asia</p>
+                    <h3>Indian & Pakistani Curries</h3>
+                </div>
+                <div class="scrollable">
+                    <div class="row gy-5">
+                        <div class="col-lg-4 menu-item">
+                            <a href="[IMAGE_URL_CURRY_1]" class="glightbox"><img src="[IMAGE_URL_CURRY_1]" class="menu-img img-fluid" alt="Indian Curry"></a>
+                            <h4>Signature Curry</h4>
+                            <p class="ingredients">Rich, aromatic gravy made with traditional spices. Ask for today's special!</p>
+                            <p class="price">$14.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROTI TAB -->
+            <div class="tab-pane fade" id="menu-roti">
+                <div class="tab-header text-center">
+                    <p>Freshly Baked</p>
+                    <h3>Roti</h3>
+                </div>
+                <div class="scrollable">
+                    <div class="row gy-5">
+                        <div class="col-lg-4 menu-item">
+                            <a href="[IMAGE_URL_ROTI_1]" class="glightbox"><img src="[IMAGE_URL_ROTI_1]" class="menu-img img-fluid" alt="Fresh Roti"></a>
+                            <h4>Whole Wheat Roti</h4>
+                            <p class="ingredients">Simple, wholesome, and perfect for pairing with any curry.</p>
+                            <p class="price">$2.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NAAN TAB -->
+            <div class="tab-pane fade" id="menu-naan">
+                <div class="tab-header text-center">
+                    <p>Freshly Baked</p>
+                    <h3>Naan</h3>
+                </div>
+                <div class="scrollable">
+                    <div class="row gy-5">
+                        <div class="col-lg-4 menu-item">
+                            <a href="[IMAGE_URL_NAAN_1]" class="glightbox"><img src="[IMAGE_URL_NAAN_1]" class="menu-img img-fluid" alt="Fresh Naan"></a>
+                            <h4>Fresh Tandoori Naan</h4>
+                            <p class="ingredients">Soft, fluffy flatbread baked fresh in our tandoor oven.</p>
+                            <p class="price">$2.50</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section><!-- /Menu Section -->
+<!-- Testimonials Section -->
+<section id="testimonials" class="testimonials section light-background">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>TESTIMONIALS</h2>
+        <p>What Are They <span class="description-title">Saying About Us</span></p>
+    </div><!-- End Section Title -->
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+            <script type="application/json" class="swiper-config">
+                {
+                    "loop": true,
+                    "speed": 600,
+                    "autoplay": {
+                        "delay": 5000
+                    },
+                    "slidesPerView": "auto",
+                    "pagination": {
+                        "el": ".swiper-pagination",
+                        "type": "bullets",
+                        "clickable": true
+                    }
+                }
+            </script>
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <div class="testimonial-item">
+                        <div class="row gy-4 justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="testimonial-content">
+                                    <p>
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        <span>I tried the Margherita pizza at Crust n Curry, and it was simply fantastic! The crust had the perfect crunch, and the fresh basil and mozzarella made every bite delightful. Definitely my go-to spot for pizza!</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                    <h3>Saul Goodman</h3>
+                                    <h4>Ceo &amp; Founder</h4>
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 text-center">
+                                <img src="assets/img/testimonials/testimonials-1.jpg" class="img-fluid testimonial-img" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End testimonial item -->
+
+                <div class="swiper-slide">
+                    <div class="testimonial-item">
+                        <div class="row gy-4 justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="testimonial-content">
+                                    <p>
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        <span>The Parmeson dish blew me away! The cheesy crust was perfectly golden, and the meat was seasoned just right. It’s comfort food at its finest; I can’t recommend it enough!</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                    <h3>Sara Wilsson</h3>
+                                    <h4>Designer</h4>
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 text-center">
+                                <img src="assets/img/testimonials/testimonials-2.jpg" class="img-fluid testimonial-img" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End testimonial item -->
+
+                <!-- Additional Testimonials -->
+                <div class="swiper-slide">
+                    <div class="testimonial-item">
+                        <div class="row gy-4 justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="testimonial-content">
+                                    <p>
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        <span>Every dish I've tried has been fantastic! I had the burger, and it was one of the best I've ever tasted! Succulent and juicy, with layers of flavor. The fresh toppings really elevated the whole experience. A must-try for burger lovers!</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                    <h3>Michael Lee</h3>
+                                    <h4>Food Blogger</h4>
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 text-center">
+                                <img src="assets/img/testimonials/testimonials-3.jpg" class="img-fluid testimonial-img" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End testimonial item -->
+
+                <div class="swiper-slide">
+                    <div class="testimonial-item">
+                        <div class="row gy-4 justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="testimonial-content">
+                                    <p>
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        <span>I love the variety offered at Crust n Curry! Each visit brings something new to try, and it's all delicious.</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                    <h3>Emma Watson</h3>
+                                    <h4>Food Enthusiast</h4>
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 text-center">
+                                <img src="assets/img/testimonials/testimonials-4.jpg" class="img-fluid testimonial-img" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End testimonial item -->
+
+                <div class="swiper-slide">
+                    <div class="testimonial-item">
+                        <div class="row gy-4 justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="testimonial-content">
+                                    <p>
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        <span>Great ambiance and even better food. The Donnar Kebab is a showstopper! The meat was incredibly tender, packed with spices, and the veggies added a great crunch. It’s a perfect blend of flavors that I’ll be craving again!</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                    <h3>John Smith</h3>
+                                    <h4>Regular Customer</h4>
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 text-center">
+                                <img src="assets/img/testimonials/testimonials-5.jpg" class="img-fluid testimonial-img" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End testimonial item -->
+
+                <div class="swiper-slide">
+                    <div class="testimonial-item">
+                        <div class="row gy-4 justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="testimonial-content">
+                                    <p>
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        <span>Exceptional quality! I was pleasantly surprised by the authentic flavors. Can't wait to come back again!</span>
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                    <h3>Linda Brown</h3>
+                                    <h4>Gourmet Critic</h4>
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                        <i class="bi bi-star-fill glowing-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 text-center">
+                                <img src="assets/img/testimonials/testimonials-6.jpg" class="img-fluid testimonial-img" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End testimonial item -->
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+    </div>
+
+</section><!-- /Testimonials Section -->
+
+<!-- CSS for Internal Gold Shine Effect -->
+<style>
+    .stars {
+        font-size: 15px; /* Size of the stars */
+    }
+
+    .glowing-star {
+        color: gold; /* Gold color for the stars */
+        position: relative; 
+        overflow: hidden;
+        animation: glow-internal 1.5s infinite alternate;
+    }
+
+    @keyframes glow-internal {
+        0% {
+            text-shadow: 0 0 0 rgba(255, 215, 0, 0),
+                         0 0 0 rgba(255, 215, 0, 0),
+                         0 0 0 rgba(255, 215, 0, 0);
+        }
+        50% {
+            text-shadow: 0 0 10px rgba(255, 215, 0, 1),
+                         0 0 20px rgba(255, 215, 0, 1),
+                         0 0 30px rgba(255, 215, 0, 1);
+        }
+        100% {
+            text-shadow: 0 0 0 rgba(255, 215, 0, 0),
+                         0 0 0 rgba(255, 215, 0, 0),
+                         0 0 0 rgba(255, 215, 0, 0);
+        }
+    }
+</style>
+   
+    <!-- Events Section -->
+    <section id="events" class="events section">
+
+      <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 1,
+                  "spaceBetween": 40
+                },
+                "1200": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 1
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-1.jpg)">
+              <h3>Custom Parties</h3>
+              <div class="price align-self-start">$99</div>
+              <p class="description">
+                Quo corporis voluptas ea ad. Consectetur inventore sapiente ipsum voluptas eos omnis facere. Enim facilis veritatis id est rem repudiandae nulla expedita quas.
+              </p>
+            </div><!-- End Event item -->
+
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-2.jpg)">
+              <h3>Private Parties</h3>
+              <div class="price align-self-start">$289</div>
+              <p class="description">
+                In delectus sint qui et enim. Et ab repudiandae inventore quaerat doloribus. Facere nemo vero est ut dolores ea assumenda et. Delectus saepe accusamus aspernatur.
+              </p>
+            </div><!-- End Event item -->
+
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-3.jpg)">
+              <h3>Birthday Parties</h3>
+              <div class="price align-self-start">$499</div>
+              <p class="description">
+                Laborum aperiam atque omnis minus omnis est qui assumenda quos. Quis id sit quibusdam. Esse quisquam ducimus officia ipsum ut quibusdam maxime. Non enim perspiciatis.
+              </p>
+            </div><!-- End Event item -->
+
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-4.jpg)">
+              <h3>Wedding Parties</h3>
+              <div class="price align-self-start">$899</div>
+              <p class="description">
+                Laborum aperiam atque omnis minus omnis est qui assumenda quos. Quis id sit quibusdam. Esse quisquam ducimus officia ipsum ut quibusdam maxime. Non enim perspiciatis.
+              </p>
+            </div><!-- End Event item -->
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+    </section><!-- /Events Section -->
+
+    <!-- Chefs Section -->
+    <section id="chefs" class="chefs section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>chefs</h2>
+        <p><span>Our</span> <span class="description-title">Proffesional Chefs<br></span></p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="assets/img/chefs/chefs-1.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter-x"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>Walter White</h4>
+                <span>Master Chef</span>
+                <p>Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut. Ipsum exercitationem iure minima enim corporis et voluptate.</p>
+              </div>
+            </div>
+          </div><!-- End Chef Team Member -->
+
+          <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="assets/img/chefs/chefs-2.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter-x"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>Sarah Jhonson</h4>
+                <span>Patissier</span>
+                <p>Quo esse repellendus quia id. Est eum et accusantium pariatur fugit nihil minima suscipit corporis. Voluptate sed quas reiciendis animi neque sapiente.</p>
+              </div>
+            </div>
+          </div><!-- End Chef Team Member -->
+
+          <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="assets/img/chefs/chefs-3.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter-x"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>William Anderson</h4>
+                <span>Cook</span>
+                <p>Vero omnis enim consequatur. Voluptas consectetur unde qui molestiae deserunt. Voluptates enim aut architecto porro aspernatur molestiae modi.</p>
+              </div>
+            </div>
+          </div><!-- End Chef Team Member -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Chefs Section -->
+
+    <!-- Book A Table Section -->
+    <section id="book-a-table" class="book-a-table section">
+
+  <!-- Section Title -->
+<div class="container section-title" data-aos="fade-up">
+    <h2>Place your Order </h2>
+    <p><span>Book Your</span> <span class="description-title">Stay With Us<br></span></p>
+</div><!-- End Section Title -->
+
+<div class="container">
+
+    <div class="row g-0" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="col-lg-4 reservation-img" style="background-image: url(assets/img/order.jpg);"></div>
+
+        <div class="col-lg-8 d-flex align-items-center reservation-form-bg" data-aos="fade-up" data-aos-delay="200">
+            <form id="reservationForm" onsubmit="sendWhatsAppMessage(event)">
+                <div class="row gy-4">
+                    <div class="col-lg-4 col-md-6">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <input type="text" class="form-control" name="order" id="order" placeholder="Your Order" required>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" required>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <label>Are you coming for pickup?</label>
+                        <select class="form-control" name="table" id="table" required>
+                            <option value="" disabled selected>Select Yes or No</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <label>Seating Preference</label>
+                        <select class="form-control" name="seating" id="seating">
+                            <option value="" disabled selected>Select Preference</option>
+                            <option value="Takeaway">Takeaway</option>
+                            <option value="Takeaway">Deliver to Home</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <input type="text" class="form-control" name="preparation" id="preparation" placeholder="Any request related to order (Optional)">
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <textarea class="form-control" name="review" id="review" rows="2" placeholder="Write a Review or Question (Optional)"></textarea>
+                    </div>
+                </div>
+
+                <div class="text-center mt-3">
+                  <button type="submit" style="background-color: #b31d1d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Place Order</button>
+                </div>
+            </form>
+        </div><!-- End Reservation Form -->
+
+    </div>
+
+</div>
+
+<script>
+    function sendWhatsAppMessage(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const name = document.getElementById('name').value;
+        const order = document.getElementById('order').value;
+        const phone = document.getElementById('phone').value;
+        const table = document.getElementById('table').value;
+        const seating = document.getElementById('seating').value;
+        const preparation = document.getElementById('preparation').value;
+        const review = document.getElementById('review').value;
+
+        const message = `Name: ${name}, Order: ${order}, Phone: ${phone}, Reserve Table: ${table}, Seating Preference: ${seating}, Preparation Request: ${preparation}, Review: ${review}`;
+        const whatsappNumber = "+923229393122";
+        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        
+        window.open(whatsappURL, '_blank'); // Open WhatsApp chat
+    }
+</script>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+    <h2>Food Collection</h2>
+    <p><span>Discover</span> <span class="description-title">Our Culinary Delights</span></p>
+</div>
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "centeredSlides": true,
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 1,
+                  "spaceBetween": 0
+                },
+                "768": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 20
+                },
+                "1200": {
+                  "slidesPerView": 5,
+                  "spaceBetween": 20
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-1.jpg"><img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-2.jpg"><img src="assets/img/gallery/gallery-2.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-3.jpg"><img src="assets/img/gallery/gallery-3.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-4.jpg"><img src="assets/img/gallery/gallery-4.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-5.jpg"><img src="assets/img/gallery/gallery-5.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-6.jpg"><img src="assets/img/gallery/gallery-6.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-7.jpg"><img src="assets/img/gallery/gallery-7.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-8.jpg"><img src="assets/img/gallery/gallery-8.jpg" class="img-fluid" alt=""></a></div>
+              <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-8.jpg"><img src="assets/img/gallery/gallery-9.jpg" class="img-fluid" alt=""></a></div>
+                <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-8.jpg"><img src="assets/img/gallery/gallery-10.jpg" class="img-fluid" alt=""></a></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+    </section><!-- /Gallery Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p><span>Need Help?</span> <span class="description-title">Contact Us</span></p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+       <div class="mb-5">
+    <iframe 
+        style="width: 100%; height: 400px;" 
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" 
+        frameborder="0" 
+        allowfullscreen="">
+    </iframe>
+    <p class="text-center mt-3">
+        <a href="https://maps.app.goo.gl/TkRBwA3TUaDM8cuR8?g_st=iw" target="_blank" 
+           style="background-color: #b22222; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; text-decoration: none;">
+           Visit Us
+        </a>
+    </p>
+</div><!-- End Google Maps -->
+
+        <div class="row gy-4">
+
+          <div class="col-md-6">
+            <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
+              <i class="icon bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Address</h3>
+                <p>82 westbury street, 
+Thornaby on tees,
+Ts176na,
+United Kingdom</p>
+              </div>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-md-6">
+            <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="300">
+              <i class="icon bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Call Us</h3>
+                <p>+44 7863208938</p>
+              </div>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-md-6">
+            <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="400">
+              <i class="icon bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email Us</h3>
+                <p>info@example.com</p>
+              </div>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-md-6">
+            <div class="info-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="500">
+              <i class="icon bi bi-clock flex-shrink-0"></i>
+              <div>
+                <h3>Opening Hours<br></h3>
+                <p><strong>Mon-Sat:</strong> 11AM - 23PM; <strong>Sunday:</strong> Closed</p>
+              </div>
+            </div>
+          </div><!-- End Info Item -->
+
+        </div>
+
+     
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-geo-alt icon"></i>
+          <div class="address">
+            <h4>Address</h4>
+            <p>82 westbury street,Thornaby on tees,</p>
+            <p>United Kingdom,Ts176na</p>
+            <p></p>
+          </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-telephone icon"></i>
+          <div>
+            <h4>Contact</h4>
+            <p>
+              <strong>Phone: </strong> <span>+44 7863208938</span><br>
+              <strong>Email:</strong> <span>info@example.com</span><br>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-clock icon"></i>
+          <div>
+            <h4>Opening Hours</h4>
+            <p>
+              <strong>Mon-Sun:</strong> <span>4pm - 8PM</span><br>
+              <strong>All</strong>: <span>7 days</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="container">
+    <div class="row text-center">
+        <div class="col-lg-6 col-md-6 d-flex justify-content-center">
+            <div class="image-frame" style="margin: 10px; border: 2px solid #ccc; border-radius: 10px; padding: 10px; max-width: 100%; overflow: hidden;">
+                <img src="rs.jpg" alt="Ch Rahil Shafiq" 
+                    style="width: 100%; height: auto; border-radius: 10px;"/>
+                <h5 style="font-family: 'Arial', sans-serif; margin-top: 10px;">Ch Rahil Shafiq<br><span style="font-size: 14px; font-style: italic;">(Joint Venture)</span></h5>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 d-flex justify-content-center">
+            <div class="image-frame" style="margin: 10px; border: 2px solid #ccc; border-radius: 10px; padding: 10px; max-width: 100%; overflow: hidden;">
+                <img src="as.jpg" alt="Amrik Singh (Specialist Indian Chef)" 
+                    style="width: 100%; height: auto; border-radius: 10px;"/>
+                <h5 style="font-family: 'Arial', sans-serif; margin-top: 10px;">Amrik Singh<br><span style="font-size: 14px; font-style: italic;">(Specialist Indian Chef)</span></h5>
+            </div>
+        </div>
+    </div>
+</div>
+        <div class="col-lg-3 col-md-6">
+          <h4>Follow Us</h4>
+          <div class="social-links d-flex">
+            <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">CrustnCurry</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by <a href="https://bootstrapmade.com/">CrustnCurrydeveloper</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
