@@ -42,31 +42,20 @@
 
 <body class="index-page">
 
-<!-- Header with fixed sidebar icon -->
-<header id="header" class="header sticky-top" style="padding: 15px 0; background: #fff;">
+<header id="header" class="header sticky-top" style="padding: 15px 0; background: #fff; position: relative; z-index: 2000;">
     <div class="container-fluid d-flex align-items-center justify-content-between">
-
-        <!-- Logo on the left -->
+        <!-- Logo -->
         <a href="index.html" class="d-flex align-items-center" style="text-decoration: none;">
             <img src="logo.jpg" alt="Logo" style="width: 80px; height: auto; max-width: none;">
         </a>
 
-        <!-- Right section: button + sidebar icon -->
-        <div class="d-flex align-items-center" style="gap: 15px; position: relative; z-index: 2000;">
-            <a class="btn-getstarted" href="index.html#book-a-table">
-                Place Order
-            </a>
-
-            <!-- Sidebar Icon -->
-            <i class="mobile-nav-toggle bi bi-list" 
-               style="font-size: 1.8rem; cursor: pointer; color: #000;"></i>
-        </div>
-
+        <!-- Sidebar toggle icon (fixed) -->
+        <i class="mobile-nav-toggle bi bi-list" 
+           style="font-size: 1.8rem; cursor: pointer; color: #000; position: fixed; top: 20px; right: 20px; z-index: 3000;"></i>
     </div>
 </header>
 
 <!-- Sidebar -->
-<div class="overlay"></div>
 <div class="sidebar">
     <span class="sidebar-close" style="cursor:pointer; font-size: 1.5rem; font-weight: bold; float: right;">&times;</span>
     <h2>Menu</h2>
@@ -81,60 +70,24 @@
     </ul>
 </div>
 
-<script>
-const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-const sidebar = document.querySelector('.sidebar');
-const overlay = document.querySelector('.overlay');
-const sidebarClose = document.querySelector('.sidebar-close');
-
-const openSidebar = () => {
-    sidebar.classList.add('active');
-    overlay.style.display = 'block';
-    mobileNavToggle.classList.remove('bi-list');
-    mobileNavToggle.classList.add('bi-x');
-};
-
-const closeSidebar = () => {
-    sidebar.classList.remove('active');
-    overlay.style.display = 'none';
-    mobileNavToggle.classList.remove('bi-x');
-    mobileNavToggle.classList.add('bi-list');
-};
-
-// Toggle sidebar
-mobileNavToggle.addEventListener('click', () => {
-    sidebar.classList.contains('active') ? closeSidebar() : openSidebar();
-});
-
-// Close inside button
-sidebarClose.addEventListener('click', closeSidebar);
-
-// Close clicking outside overlay (mobile-friendly)
-overlay.addEventListener('click', closeSidebar);
-
-// Support touch events
-document.addEventListener('touchstart', (e) => {
-    if(!sidebar.contains(e.target) && !mobileNavToggle.contains(e.target)) {
-        closeSidebar();
-    }
-});
-</script>
+<main class="main">
+    <p>Page content here. Touch works properly on mobile now!</p>
+</main>
 
 <style>
 /* Sidebar styles */
 .sidebar {
     position: fixed;
     top: 0;
-    left: -250px; /* Hide initially */
+    left: -250px;
     width: 250px;
     height: 100%;
     background: #f0f0f0;
     color: #333;
-    border: 2px solid #ccc;
-    transition: left 0.3s ease;
     padding: 20px;
-    z-index: 1001;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2);
 }
 
 .sidebar.active {
@@ -167,32 +120,58 @@ document.addEventListener('touchstart', (e) => {
 }
 
 .sidebar ul li a {
+    text-decoration: none;
     color: #333;
     font-weight: bold;
-    text-decoration: none;
-    padding: 10px;
     display: block;
+    padding: 10px;
 }
 
 .sidebar-close:hover {
     color: red;
 }
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    display: none;
-    z-index: 1000;
-}
 </style>
 
-<main class="main">
-    <p>Page content here. On mobile, the sidebar now works properly!</p>
-</main>
+<script>
+const sidebar = document.querySelector('.sidebar');
+const toggleBtn = document.querySelector('.mobile-nav-toggle');
+const closeBtn = document.querySelector('.sidebar-close');
+
+// Open sidebar
+const openSidebar = () => {
+    sidebar.classList.add('active');
+    toggleBtn.classList.remove('bi-list');
+    toggleBtn.classList.add('bi-x');
+};
+
+// Close sidebar
+const closeSidebar = () => {
+    sidebar.classList.remove('active');
+    toggleBtn.classList.remove('bi-x');
+    toggleBtn.classList.add('bi-list');
+};
+
+// Toggle sidebar
+toggleBtn.addEventListener('click', () => {
+    sidebar.classList.contains('active') ? closeSidebar() : openSidebar();
+});
+
+// Close button inside sidebar
+closeBtn.addEventListener('click', closeSidebar);
+
+// Close sidebar when clicking outside (touch & click)
+document.addEventListener('click', (e) => {
+    if(!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+        closeSidebar();
+    }
+});
+document.addEventListener('touchstart', (e) => {
+    if(!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+        closeSidebar();
+    }
+});
+</script>
+
 
   <main class="main">
 
