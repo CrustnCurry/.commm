@@ -1196,7 +1196,6 @@
       <br><!-- End Reservation Form -->
     </div>
 </div>
-
 <script>
     function generateUniqueOrderNumber() {
         const uniqueId = Math.floor(Math.random() * 100000); // Shorter unique ID
@@ -1234,14 +1233,18 @@
         const whatsappNumber = "+447863208938";
         const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
         
+        // Open WhatsApp chat and show alert with customer name
         setTimeout(() => {
-            window.open(whatsappURL, '_blank'); // Open WhatsApp chat after 2 seconds
-            alert(" Dear Customer: Thank You for placing an order! Our team will proceed with it shortly!"); // Show thank you message
-            location.reload(); // Refresh the page after user clicks OK
+            window.open(whatsappURL, '_blank'); // Open WhatsApp chat
+            alert(`Thank You, ${name}, for placing an order! Our team will proceed with it shortly!`); // Personalize thank you message
+
+            // Delay the page refresh until the user clicks OK
+            setTimeout(() => {
+                location.reload(); // Refresh the page
+            }, 100); // Small delay for the dialog to show
         }, 2000); // Adjust time as needed
     }
 </script>
-
       <br>
       <div style="background-color: black; padding: 20px; border: 5px solid red; border-radius: 8px; max-width: 600px; margin: 20px auto; text-align: center;">
     <h2 style="font-family: 'Impact', sans-serif; font-size: 36px; color: red; margin: 0;">ALLERGY INFORMATION</h2>
