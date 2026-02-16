@@ -1150,8 +1150,10 @@
                         <input type="text" class="form-control" name="order" id="order" placeholder="Your Order" required>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" required>
-                    </div>
+    <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" required 
+           pattern="\d{10}" title="Please enter a valid 10-digit phone number." 
+           maxlength="10">
+</div>
                     <div class="col-lg-4 col-md-6">
                         <label>Are you coming for pickup?</label>
                         <select class="form-control" name="table" id="table" required>
