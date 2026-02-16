@@ -1278,52 +1278,64 @@ document.addEventListener("visibilitychange", function () {
 
 function showThankYouPopup(name) {
 
-    const popup = document.createElement('div');
-    popup.innerHTML = `
-        <div style="
-            position:fixed;
-            top:20px;
-            left:50%;
-            transform:translateX(-50%);
-            background:black;
-            color:white;
-            padding:30px;
-            border:2px solid red;
-            border-radius:12px;
-            z-index:1000;
-            text-align:center;
-            font-family:'Times New Roman', Times, serif;
-            box-shadow:0 0 20px red;
+   const popup = document.createElement('div');
+
+popup.innerHTML = `
+    <div style="
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 360px;
+        background: #111;
+        color: #fff;
+        padding: 20px;
+        border-radius: 16px;
+        z-index: 1000;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    ">
+        <h3 style="
+            margin: 0 0 12px 0;
+            font-size: 18px;
+            line-height: 1.4;
         ">
-            <h3 style="margin:0 0 10px 0;">
-                Thank You ${name}, for placing an order! Our team will proceed with it shortly!
-                <span style="
-                    color:red;
-                    font-weight:bold;
-                    font-size:22px;
-                ">
-                    ${name.toUpperCase()}
-                </span>!
-            </h3>
-
-            <p style="margin-bottom:20px;">
-                Thank You ${name}, for placing an order! Our team will proceed it shortly!
-            </p>
-
-            <button id="okBtn" style="
-                padding:10px 25px;
-                background:red;
-                color:black;
-                border:none;
-                border-radius:6px;
-                cursor:pointer;
-                font-weight:bold;
-                font-family:'Times New Roman', Times, serif;
+            Thank you 
+            <span style="
+                color: #ff3b3b;
+                font-weight: bold;
             ">
-                OK
-            </button>
-        </div>
-    `;
+                ${name.toUpperCase()}
+            </span>!
+        </h3>
+
+        <p style="
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #ccc;
+        ">
+            Your order has been placed successfully.  
+            Our team will process it shortly.
+        </p>
+
+        <button id="okBtn" style="
+            width: 100%;
+            padding: 12px;
+            background: #ff3b3b;
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        ">
+            OK
+        </button>
+    </div>
+`;
+
 
     document.body.appendChild(popup);
 
