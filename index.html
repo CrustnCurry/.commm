@@ -1227,6 +1227,7 @@
         orderInput.value = "Processing..."; // Show processing message
         setTimeout(() => {
             orderInput.value = orderNumber; // Update input with the unique order number
+            orderInput.disabled = true; // Disable the order input to prevent changes
         }, 2000);
 
         const message = `Order Number: ${orderNumber}, Name: ${name}, Phone: ${phone}, Reserve Table: ${table}, Seating Preference: ${seating}, Preparation Request: ${preparation}, Review: ${review}`;
@@ -1235,7 +1236,8 @@
         
         setTimeout(() => {
             window.open(whatsappURL, '_blank'); // Open WhatsApp chat after 2 seconds
-            alert("Thank You for placing an order! Our team will proceed with it shortly!"); // Show thank you message
+            alert(" Dear Customer: Thank You for placing an order! Our team will proceed with it shortly!"); // Show thank you message
+            location.reload(); // Refresh the page after user clicks OK
         }, 2000); // Adjust time as needed
     }
 </script>
