@@ -1153,10 +1153,10 @@
                     <div class="col-lg-4 col-md-6">
                         <input type="text" class="form-control" name="order" id="order" placeholder="Your Order" required>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-    <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" required 
-           pattern="\d{10}" title="Please enter a valid 10-digit phone number." 
-           maxlength="10">
+                 <div class="col-lg-4 col-md-6">
+    <input type="tel" class="form-control" name="phone" id="phone" placeholder="+xx xxxxxxxxxx" required 
+           pattern="^\+\d{1,3} \d{4,14}$" title="Please enter a valid phone number in the format +xx xxxxxxxxxx (e.g., +44 7863 208 938)." 
+           maxlength="16">
 </div>
                     <div class="col-lg-4 col-md-6">
                         <label>Are you coming for pickup?</label>
@@ -1167,7 +1167,7 @@
                         </select>
                     </div>
                     <div class="col-lg-4 col-md-6">
-                        <label>Preference</label>
+                        <label>Select Preference</label>
                         <select class="form-control" name="seating" id="seating">
                             <option value="" disabled selected>Preference</option>
                             <option value="Takeaway">Takeaway</option>
