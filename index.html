@@ -1158,108 +1158,177 @@
 </div>
 <br>
         <div class="col-lg-8 d-flex align-items-center reservation-form-bg" data-aos="fade-up" data-aos-delay="200">
-            <form id="reservationForm" onsubmit="sendWhatsAppMessage(event)">
-                <div class="row gy-4">
-                    <div class="col-lg-4 col-md-6">
-                        <br><br>
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                <form id="reservationForm" onsubmit="sendWhatsAppMessage(event)">
+                    <div class="row gy-4">
+                        <div class="col-lg-4 col-md-6">
+                            <br><br>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <input type="text" class="form-control" name="order" id="order" placeholder="Your Order" required>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <input type="tel" class="form-control" name="phone" id="phone" 
+                                   placeholder="Enter your phone number" required 
+                                   title="Please enter a valid phone number." 
+                                   maxlength="20">
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <label>Are you coming for pickup?</label>
+                            <select class="form-control" name="pickup" id="pickup" required>
+                                <option value="" disabled selected>Select Yes or No</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <label>Select Preference</label>
+                            <select class="form-control" name="preference" id="preference" required>
+                                <option value="" disabled selected>Preference</option>
+                                <option value="Pickup">Pickup</option>
+                                <option value="Deliver to Home">Deliver to Home</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <input type="text" class="form-control" name="preparation" id="preparation" placeholder="Any request related to order (Optional)">
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <textarea class="form-control" name="review" id="review" rows="2" placeholder="Write a Review or Question (Optional)"></textarea>
+                        </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <input type="text" class="form-control" name="order" id="order" placeholder="Your Order" required>
-                    </div>
-                  <div class="col-lg-4 col-md-6">
-    <input type="tel" class="form-control" name="phone" id="phone" 
-           placeholder="Enter your phone number" required 
-           title="Please enter a valid phone number." 
-           maxlength="20">
-</div>
-            <div class="col-lg-4 col-md-6">
-    <label>Are you coming for pickup?</label>
-    <select class="form-control" name="pickup" id="pickup" required>
-        <option value="" disabled selected>Select Yes or No</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-    </select>
-</div>
-                    <div class="col-lg-4 col-md-6">
-                        <label>Select Preference</label>
-                        <select class="form-control" name="seating" id="seating">
-                            <option value="" disabled selected>Preference</option>
-                            <option value="Takeaway">Takeaway</option>
-                            <option value="Deliver to Home">Deliver to Home</option>
-                        </select>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <input type="text" class="form-control" name="preparation" id="preparation" placeholder="Any request related to order (Optional)">
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <textarea class="form-control" name="review" id="review" rows="2" placeholder="Write a Review or Question (Optional)"></textarea>
-                    </div>
-                </div>
 
-                <div class="text-center mt-3">
-                    <button type="submit" style="background-color: #b31d1d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Place Order</button>
-                </div>
+                    <div class="text-center mt-3">
+                        <button type="submit" style="background-color: #b31d1d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Place Order</button>
+                    </div>
 
-                <div class="mt-3">
-                    <label for="generatedOrderNumber">Your Order Number will appear here:</label>
-                    <input type="text" class="form-control" id="generatedOrderNumber" readonly>
-                    <button type="button" onclick="copyOrderNumber()" style="margin-top: 10px; background-color: black; color: white; border: none; padding: 5px 10px; border-radius: 5px;">Copy Order Number</button>
-                </div>
-            </form>
-        </div>
-      <br><!-- End Reservation Form -->
+                    <div class="mt-3">
+                        <label for="generatedOrderNumber">Order Number</label>
+                        <input type="text" class="form-control" id="generatedOrderNumber" readonly>
+                        <button type="button" onclick="copyOrderNumber()" style="margin-top: 10px; background-color: black; color: white; border: none; padding: 5px 10px; border-radius: 5px;">Place order to generate</button>
+                    </div>
+                </form>
+            </div>
+        </div><!-- End Reservation Form -->
     </div>
-</div>
-<script>
+</section>
+
+
+   
+  <script>
     function generateUniqueOrderNumber() {
-        const uniqueId = Math.floor(Math.random() * 100000); // Shorter unique ID
+        const uniqueId = Math.floor(Math.random() * 100000);
         return `CnC${uniqueId}`;
     }
 
-    function copyOrderNumber() {
-        const orderNumberField = document.getElementById('generatedOrderNumber');
-        orderNumberField.select();
-        document.execCommand('copy');
-        alert("Order number copied to clipboard!");
-    }
-
     function sendWhatsAppMessage(event) {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault();
 
-        const name = document.getElementById('name').value;
-        const orderInput = document.getElementById('order');
-        const phone = document.getElementById('phone').value;
-        const table = document.getElementById('table').value;
-        const seating = document.getElementById('seating').value;
-        const preparation = document.getElementById('preparation').value;
-        const review = document.getElementById('review').value;
+        const name = document.getElementById('name').value.trim();
+        const orderField = document.getElementById('order');
+        const phone = document.getElementById('phone').value.trim();
+        const pickup = document.getElementById('pickup').value;
+        const preference = document.getElementById('preference').value;
+        const preparation = document.getElementById('preparation').value.trim();
+        const review = document.getElementById('review').value.trim();
 
-        // Generate and display a unique order number
         const orderNumber = generateUniqueOrderNumber();
-        document.getElementById('generatedOrderNumber').value = orderNumber; // Show order number to the user
-        orderInput.value = "Processing..."; // Show processing message
-        setTimeout(() => {
-            orderInput.value = orderNumber; // Update input with the unique order number
-            orderInput.disabled = true; // Disable the order input to prevent changes
-        }, 2000);
+        orderField.value = orderNumber;
+        orderField.disabled = true;
 
-        const message = `Order Number: ${orderNumber}, Name: ${name}, Phone: ${phone}, Reserve Table: ${table}, Seating Preference: ${seating}, Preparation Request: ${preparation}, Review: ${review}`;
-        const whatsappNumber = "+447863208938";
+        let message =
+`New Order
+Order Number: ${orderNumber}
+Name: ${name}
+Phone: ${phone}
+Pickup: ${pickup}
+Preparation: ${preparation}
+Review: ${review}
+Service: ${preference}`;
+
+        const whatsappNumber = "447863208938";
         const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-        
-        // Open WhatsApp chat and show alert with customer name
-        setTimeout(() => {
-            window.open(whatsappURL, '_blank'); // Open WhatsApp chat
-            alert(`Thank You, ${name}, for placing an order! Our team will proceed with it shortly!`); // Personalize thank you message
 
-            // Delay the page refresh until the user clicks OK
-            setTimeout(() => {
-                location.reload(); // Refresh the page
-            }, 100); // Small delay for the dialog to show
-        }, 2000); // Adjust time as needed
+        // Open WhatsApp
+        window.open(whatsappURL, '_blank');
+
+       
+
+     // Save flag in sessionStorage
+sessionStorage.setItem("whatsappSent", "true");
+sessionStorage.setItem("customerName", name);
+}
+
+// Detect when user comes back to page
+document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible") {
+        if (sessionStorage.getItem("whatsappSent") === "true") {
+
+            showThankYouPopup(sessionStorage.getItem("customerName"));
+
+            sessionStorage.removeItem("whatsappSent");
+            sessionStorage.removeItem("customerName");
+        }
     }
+});
+
+function showThankYouPopup(name) {
+
+    const popup = document.createElement('div');
+    popup.innerHTML = `
+        <div style="
+            position:fixed;
+            top:20px;
+            left:50%;
+            transform:translateX(-50%);
+            background:black;
+            color:white;
+            padding:30px;
+            border:2px solid red;
+            border-radius:12px;
+            z-index:1000;
+            text-align:center;
+            font-family:'Times New Roman', Times, serif;
+            box-shadow:0 0 20px red;
+        ">
+            <h3 style="margin:0 0 10px 0;">
+                Thank You ${name}, for placing an order! Our team will proceed with it shortly!
+                <span style="
+                    color:red;
+                    font-weight:bold;
+                    font-size:22px;
+                ">
+                    ${name.toUpperCase()}
+                </span>!
+            </h3>
+
+            <p style="margin-bottom:20px;">
+                Thank You ${name}, for placing an order! Our team will proceed it shortly!
+            </p>
+
+            <button id="okBtn" style="
+                padding:10px 25px;
+                background:red;
+                color:black;
+                border:none;
+                border-radius:6px;
+                cursor:pointer;
+                font-weight:bold;
+                font-family:'Times New Roman', Times, serif;
+            ">
+                OK
+            </button>
+        </div>
+    `;
+
+    document.body.appendChild(popup);
+
+    document.getElementById("okBtn").onclick = function () {
+        location.reload();
+    };
+}
+
 </script>
+
    <br>
     <!-- Gallery Section -->
     <section id="gallery" class="gallery section light-background">
