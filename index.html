@@ -1129,29 +1129,21 @@
 
     </section><!-- /Chefs Section -->
 
-    <!-- Book A Table Section -->
-    <section id="book-a-table" class="book-a-table section">
-
-  <!-- Section Title -->
+      <section id="book-a-table" class="book-a-table section">
 <div class="container section-title" data-aos="fade-up">
     <h2>Place your Order </h2>
     <p><span>Book Your</span> <span class="description-title">Stay With Us<br></span></p>
 </div><!-- End Section Title -->
 
 <div class="container">
-
     <div class="row g-0" data-aos="fade-up" data-aos-delay="100">
-
         <div class="col-lg-4 reservation-img" style="background-image: url(assets/img/order.jpg);"></div>
-      <br>
-    
-
+        <br>
         <div class="col-lg-8 d-flex align-items-center reservation-form-bg" data-aos="fade-up" data-aos-delay="200">
             <form id="reservationForm" onsubmit="sendWhatsAppMessage(event)">
                 <div class="row gy-4">
                     <div class="col-lg-4 col-md-6">
-                      <br>
-                      <br>
+                        <br><br>
                         <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                     </div>
                     <div class="col-lg-4 col-md-6">
@@ -1185,34 +1177,62 @@
                 </div>
 
                 <div class="text-center mt-3">
-                  <button type="submit" style="background-color: #b31d1d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Place Order</button>
+                    <button type="submit" style="background-color: #b31d1d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Place Order</button>
+                </div>
+
+                <div class="mt-3">
+                    <label for="generatedOrderNumber">Your Order Number will appear here:</label>
+                    <input type="text" class="form-control" id="generatedOrderNumber" readonly>
+                    <button type="button" onclick="copyOrderNumber()" style="margin-top: 10px; background-color: black; color: white; border: none; padding: 5px 10px; border-radius: 5px;">Copy Order Number</button>
                 </div>
             </form>
         </div><!-- End Reservation Form -->
-
     </div>
-
 </div>
 
 <script>
+    function generateUniqueOrderNumber() {
+        const uniqueId = Math.floor(Math.random() * 100000); // Shorter unique ID
+        return `CnC${uniqueId}`;
+    }
+
+    function copyOrderNumber() {
+        const orderNumberField = document.getElementById('generatedOrderNumber');
+        orderNumberField.select();
+        document.execCommand('copy');
+        alert("Order number copied to clipboard!");
+    }
+
     function sendWhatsAppMessage(event) {
         event.preventDefault(); // Prevent form submission
 
         const name = document.getElementById('name').value;
-        const order = document.getElementById('order').value;
+        const orderInput = document.getElementById('order');
         const phone = document.getElementById('phone').value;
         const table = document.getElementById('table').value;
         const seating = document.getElementById('seating').value;
         const preparation = document.getElementById('preparation').value;
         const review = document.getElementById('review').value;
 
-        const message = `Name: ${name}, Order: ${order}, Phone: ${phone}, Reserve Table: ${table}, Seating Preference: ${seating}, Preparation Request: ${preparation}, Review: ${review}`;
+        // Generate and display a unique order number
+        const orderNumber = generateUniqueOrderNumber();
+        document.getElementById('generatedOrderNumber').value = orderNumber; // Show order number to the user
+        orderInput.value = "Processing..."; // Show processing message
+        setTimeout(() => {
+            orderInput.value = orderNumber; // Update input with the unique order number
+        }, 2000);
+
+        const message = `Order Number: ${orderNumber}, Name: ${name}, Phone: ${phone}, Reserve Table: ${table}, Seating Preference: ${seating}, Preparation Request: ${preparation}, Review: ${review}`;
         const whatsappNumber = "+447863208938";
         const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
         
-        window.open(whatsappURL, '_blank'); // Open WhatsApp chat
+        setTimeout(() => {
+            window.open(whatsappURL, '_blank'); // Open WhatsApp chat after 2 seconds
+            alert("Thank You for placing an order! Our team will proceed with it shortly!"); // Show thank you message
+        }, 2000); // Adjust time as needed
     }
 </script>
+
       <br>
       <div style="background-color: black; padding: 20px; border: 5px solid red; border-radius: 8px; max-width: 600px; margin: 20px auto; text-align: center;">
     <h2 style="font-family: 'Impact', sans-serif; font-size: 36px; color: red; margin: 0;">ALLERGY INFORMATION</h2>
